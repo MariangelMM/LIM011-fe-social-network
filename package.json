@@ -32,5 +32,11 @@
     "serve": "^11.0.2",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^2.2.0"
+  },
+  "dependencies": {
+    "firebase": "^7.5.2",
+    "firebase-admin": "^8.8.0",
+    "hint": "^6.0.3",
+    "html": "^1.0.0"
   }
 }
