@@ -1,7 +1,3 @@
-import firebase from 'firebase'
-require('firebase/auth')
-
-
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyCsMgoWIw4qFpyOZnmjmqSWBreHsh71xJY",
