@@ -1,6 +1,6 @@
-import { registrar, autenticacion } from './controladorfirebase.js'
+import { registrar } from '../controladorfirebase.js'
 
-export default () => {
+export const REGISTRO = () => {
   const viewRegistro = `
     <div class="registro flex">
    <img src="./imagenes/loguito.png" alt="Logo">
@@ -10,7 +10,7 @@ export default () => {
             <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="email"> <br>
             <input class="inputs flex" id="password" placeholder="Contraseña Nueva" type="password">
           </form>
-          <button class="boton verde" type="submit" id="btn_registrar">REGISTRAR</button>
+          <button class="boton verde" type="submit" id="btn_registrar" >REGISTRAR</button>
         </div>
 
     `
@@ -19,17 +19,21 @@ export default () => {
   divElem.querySelector('#btn_registrar').addEventListener('click', () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const mensajeError = document.querySelector('#error').value;
+    registrar(email, password)
+      .then(function () {
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
+        const url = window.location.href;
+        const nuevaUrl = url.replace(/registro/, 'interacciones');
+        console.log(nuevaUrl);
+        window.location.href = nuevaUrl;
+      })
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert('Debes ingresar un correo electrónico válido' + '\n La contraseña debe tener al menos 6 caracteres')
+      });
 
- registrar(email, password)
- .then(() => alert("Datos Guardados"))
- .catch(function (error) {
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  alert('Debes ingresar un correo electrónico válido' + '\n La contraseña debe tener al menos 6 caracteres' )
-  });
- autenticacion();
-    
   });
   return divElem;
 }

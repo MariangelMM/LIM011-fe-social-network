@@ -23,7 +23,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 200px;
 }
 
 .inputs {
@@ -58,6 +57,20 @@ body {
     min-width: 300px;
     background-size: cover;
 }
+
+.formulario .logo_redes input{
+    width: 3em;
+    height: auto;
+    padding: 0.5em;
+}
+.formulario .logo_redes {
+    width: 10em;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    
+}
+
 .flex{
     display: flex;
 }
@@ -86,6 +99,7 @@ body {
     width: 250px;
     height: 30px;
 }
-.formulario{
+.formulario{ 
     font-size: 20px;
+}
 }

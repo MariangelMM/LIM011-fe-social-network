@@ -1,9 +1,11 @@
-import Home from './home.js';
-import Registro from './registro.js';
+import { HOME } from './home.js';
+import { REGISTRO } from './registro.js';
+import { INTERACCIONES } from './interaciones.js';
 
  export const componentes = {
 
-    home : Home,
-    registro : Registro
+    home : HOME,
+    registro : REGISTRO,
+    interacciones: INTERACCIONES
 
 }
