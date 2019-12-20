@@ -58,7 +58,7 @@ body {
     background-size: cover;
 }
 
-.formulario .logo_redes input{
+.formulario .logo_redes img{
     width: 3em;
     height: auto;
     padding: 0.5em;

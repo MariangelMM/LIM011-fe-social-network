@@ -1,12 +1,11 @@
 // Your web app's Firebase configuration
-export  var firebaseConfig = {
-  apiKey: "AIzaSyCsMgoWIw4qFpyOZnmjmqSWBreHsh71xJY",
-  authDomain: "food-book-78850.firebaseapp.com",
-  databaseURL: "https://food-book-78850.firebaseio.com",
-  projectId: "food-book-78850",
-  storageBucket: "food-book-78850.appspot.com",
-  messagingSenderId: "428801812215",
-  appId: "1:428801812215:web:4ccfb72c2939bd0ab955f2",
-  measurementId: "G-0LJ7T7YDCP"
+export const firebaseConfig = {
+  apiKey: "AIzaSyC1s3FF3CLaiyp7duhBRVQ496yzbW4lIrE",
+  authDomain: "food-book-2.firebaseapp.com",
+  databaseURL: "https://food-book-2.firebaseio.com",
+  projectId: "food-book-2",
+  storageBucket: "food-book-2.appspot.com",
+  messagingSenderId: "338898247396",
+  appId: "1:338898247396:web:bd53a8a7c006ebd00996f1"
 };
 

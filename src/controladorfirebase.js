@@ -1,4 +1,3 @@
-
 export const registrar = (email, password) => firebase.auth()
   .createUserWithEmailAndPassword(email, password);
 
@@ -22,12 +21,24 @@ export const observador = () => firebase.auth()
       console.log('no existe');
     }
   });
+
+
+
 //Auth con Google
 export const google = () => {
+
+  const db = firebase.firestore();
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then(function(result) {
     var user = result.user;
-  
+    var name = user.displayName;
+    console.log(name);
+    
+    db.collection('usuarios').add({
+      nombre: name,
+
+
+    })
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;

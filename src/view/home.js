@@ -12,8 +12,8 @@ export const HOME = () => {
           <div id="boton-logueo" class="recuadro flex">
             <button class= "boton verde bold" type="button" id="btn_ingresar">INGRESA</button>
           <div class="logo_redes">
-            <input id="facebook" type=image src="./imagenes/facebook.svg">
-            <input id="google" type=image src="./imagenes/google.svg">
+            <img id="facebook" type=image src="./imagenes/facebook.svg">
+            <img id="google" type=image src="./imagenes/google.svg">
           </div>
             <p class ="parrafo"> Bienvenid@ , Conéctate con tu red social preferida <br> y comparte tus conocimientos de cocina. </p>
 

@@ -1,4 +1,4 @@
-import { changeView } from './viewcontrole/index.js'
+import { changeView } from './viewcontrole/rutas.js'
 import { firebaseConfig } from './firebaseconfig.js'
 
 const init = () => {

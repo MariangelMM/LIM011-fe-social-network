@@ -1,5 +1,8 @@
+
+
 export const INTERACCIONES = () => {
-  const db = firebase.firestore();
+   const db = firebase.firestore();
+
 
   const viewHome = `
     <img class= "" src="imagenes/bannerloguito.png" alt="">
@@ -16,6 +19,7 @@ export const INTERACCIONES = () => {
 
     </section> `;
 
+
   const divElem = document.createElement('div');
   divElem.innerHTML = viewHome;
 //PUBLICAR
@@ -26,7 +30,7 @@ export const INTERACCIONES = () => {
     console.log(textarea);
 
     db.collection('publicaciones').add({
-      recetas: textarea,
+      post: textarea,
     })
 
       .then(function (docRef) {
@@ -45,7 +49,7 @@ db.collection('publicaciones').onSnapshot((querySnapshot) =>{
   querySnapshot.forEach((doc) => {
     tabla.innerHTML += `
     <td scope=row> ${doc.id}</td>
-    <td> ${doc.data().recetas}</td>
+    <td> ${doc.data().post}</td>
     `
   })
 })
