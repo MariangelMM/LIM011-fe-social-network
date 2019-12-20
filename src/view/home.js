@@ -1,4 +1,4 @@
-import { ingresar, google, facebook, observador } from '../controladorfirebase.js'
+import { logear, logInGoogle, logInFacebook, observador } from '../controladorfirebase.js'
 
 
 export const HOME = () => {
@@ -8,13 +8,13 @@ export const HOME = () => {
         <form class="formulario flex">
           <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="text">
           <input class="inputs flex" id="password" placeholder="Contraseña" type="password">
-          <div id="boton-logueo" class="recuadro flex">
+           <div class="recuadro flex"> 
             <button class= "boton verde bold" type="button" id="btn_ingresar">INGRESA</button>
           <div class="logo_redes">
             <input id="facebook" type=image src="./imagenes/facebook.svg">
             <input id="google" type=image src="./imagenes/google.svg">
           </div>
-            <p class ="parrafo"> Bienvenid@ , Conéctate con tu red social preferida <br> y comparte tus conocimientos de cocina. </p>
+            <p class="parrafo"> Bienvenid@ , Conéctate con tu red social preferida <br> y comparte tus conocimientos de cocina. </p>
             <p class="flex">¿No tienes una cuenta? <a href="#/registro" id="enlace_registrar" class="azul bold">Regístrate</a></p>
           </div>
         </form>
@@ -24,7 +24,7 @@ export const HOME = () => {
   divElem.querySelector('#btn_ingresar').addEventListener('click', () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    ingresar(email, password)
+    logear(email, password)
    .then(function() {
     document.getElementById('email').value = '';
     document.getElementById('password').value = '';
@@ -50,13 +50,13 @@ export const HOME = () => {
   divElem.querySelector('#google').addEventListener('click' , (e) => {
     e.preventDefault()
     
-   google();
+   logInGoogle();
   });
   // click facebbok
   divElem.querySelector('#facebook').addEventListener('click' , (e) => {
     e.preventDefault()
     
-   facebook();
+   logInFacebook();
   });
 
 observador();

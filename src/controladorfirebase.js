@@ -1,7 +1,9 @@
-export const registrar = (email, password) => firebase.auth()
+//registrar firebase
+export const registrarUsuario = (email, password) => firebase.auth()
   .createUserWithEmailAndPassword(email, password);
 
-export const ingresar = (email, password) => firebase.auth()
+//login 
+export const logear = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password);
 
 export const observador = () => firebase.auth()
@@ -20,9 +22,10 @@ export const observador = () => firebase.auth()
     } else {
       console.log('no existe');
     }
-  });
-//Auth con Google
-export const google = () => {
+});
+
+//login  con Google
+export const logInGoogle = () => {
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then(function(result) {
     var user = result.user;
@@ -41,7 +44,7 @@ export const google = () => {
 
 // login con Facebook
 
-export const facebook = () => {
+export const logInFacebook = () => {
   const facebook = new firebase.auth.FacebookAuthProvider();
   firebase.auth().signInWithPopup(facebook).then(function(result) {
      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
