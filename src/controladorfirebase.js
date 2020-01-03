@@ -11,16 +11,7 @@ export const observador = () => firebase.auth()
     if (user) {
       // User is signed in.
       console.log('sesion iniciada') 
-      var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      var providerData = user.providerData;
-      // ...
-    } else {
-      console.log('no existe');
+      
     }
 });
 
@@ -63,3 +54,62 @@ export const logInFacebook = () => {
      // ...
    });
  }
+
+ //agregar post 
+ export const añadirPost = (textarea) =>
+  firebase.firestore().collection('publicaciones').add({
+    post: textarea,
+  });
+
+  //cerrar sesion
+   export const outUser = () => {
+     return firebase.auth().signOut();
+   };
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
