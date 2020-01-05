@@ -1,5 +1,6 @@
 
     import { outUser } from '../firebase/controladorfirebase.js'
+    import { saveUsers } from '../firebase/autenticadorfirebase.js'
 
     export const INTERACCIONES = () => {
       const db = firebase.firestore();
@@ -115,6 +116,23 @@
           window.location.hash = '#/';
         })
       });
+       //asignancion datos básicos a perfil
+       
+ const photoProfile = divElement.querySelector('#photoProfile');
+ const nameUser = divElement.querySelector('#nameUser');
+ const photoProfileDestok = divElement.querySelector('#photoProfileDestok');
+ const nameUserDestok = divElement.querySelector('#nameUserDestok');
+ const nameUserHeader = divElement.querySelector('#nameUserHeader');
+
+
+ const user = firebase.auth().currentUser 
+console.log(user)
+photoProfile.src = user.photoURL;
+ nameUser.innerHTML = user.displayName;
+photoProfileDestok.src = user.photoURL;
+nameUserDestok.innerHTML = user.displayName;
+nameUserHeader.innerHTML = user.displayName;
+ 
 
 
       return divElement;

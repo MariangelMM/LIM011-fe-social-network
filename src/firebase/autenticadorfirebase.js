@@ -16,16 +16,17 @@ export const promOutUser = () => {
   });
 }
 
+
+
+
  export const saveUsers = () => {
     var user = firebase.auth().currentUser;
-    var name, email, photoUrl;
-    
+
     if (user != null) 
-    firebase.firestore().collection("usuarios").add({
+    firebase.firestore().collection('usuarios').doc(user.uid).set({
       name : user.displayName,
       email : user.email,
       photoUrl : user.photoURL,
       uid : user.uid
-  });
-    return user;
+    })
  };
