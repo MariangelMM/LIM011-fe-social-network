@@ -83,8 +83,63 @@ body {
 
   display: flex;
   text-align: center;
-
 }
+
+.encabezado {
+    overflow: hidden;
+    background-color: rgb(233, 120, 139);
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 0;
+}
+
+.section-publics-muro {
+    width: 50%;
+    margin-top: 2%;
+}
+.form {
+    width: 328px;
+    border: 1px solid grey;
+    padding: 20px;
+    border-radius: 3px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.title-note {
+    display: flex;
+    justify-content: space-between;
+    background: grey;
+    padding: 15px;
+}
+
+.coment { 
+    width: 328px;
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    margin-bottom: 17px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (min-width:801px) {
 .contenedor{
@@ -106,293 +161,4 @@ body {
 header{
     display: flex;
 }
-
-
-    
-
-    
-    .photo {
-        width: 85px;
-        border-radius: 50%;
-        height: 85px;
-    }
-    
-    .form {
-        width: 328px;
-        border: 1px solid grey;
-        padding: 20px;
-        border-radius: 3px;
-        margin-bottom: 25px;
-        box-sizing: border-box;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .form textarea {
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 3px;
-        width: 92%;
-    }
-    
-    .btn-img {
-        width: 42px;
-        height: 37px;
-        border-radius: 50%;
-        margin-right: 13px;
-        margin-top: 5px;
-        background: rgb(65, 65, 65);
-        border: none;
-    }
-    
-    .btn-share {
-        width: 43%;
-        box-sizing: border-box;
-        height: 38px;
-        border-radius: 20px;
-        padding-left: 12px;
-    }
-    
-    .btn-coment {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
-    
-    .coment { 
-        width: 328px;
-        border: 1px solid grey;
-        border-radius: 3px;
-        margin-left: auto;
-        margin-right: auto;
-        box-sizing: border-box;
-        margin-bottom: 17px;
-    }
-    
-    .coment p {
-        margin: 0;
-    }
-    
-    .title-note {
-        display: flex;
-        justify-content: space-between;
-        background: grey;
-        padding: 15px;
-    }
-    
-    hr {
-        margin-bottom: 20px;
-    }
-    
-    .text-coment {
-        text-align: left;
-        font-size: 14px;
-        font-family: monospace;
-        padding: 15px;
-    }
-    
-    .section-btns-note {
-        padding: 15px;
-        background: rgb(221, 220, 220);
-    }
-    
-    .btns-note {
-        width: 42px;
-        height: 37px;
-        border-radius: 50%;
-        margin-right: 13px;
-        margin-top: 5px;
-        background: grey;
-        border: none;
-    }
-    
-    .icons-white {
-        color: white;
-    }
-    
-    .bars {
-        color: rgb(73, 73, 73);
-    }
-    
-    .text-grey {
-        font-size: 12.4px;
-        font-family: sans-serif;
-        color: grey;
-        margin: 0;
-    }
-    
-    .name-user {
-        font-size: 14px;
-        font-family: sans-serif;
-        padding-top: 5px;
-        margin-bottom: 10px;
-    }
-    
-    .section-info-muro {
-        width: 328px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .figure-photo {
-        margin-left: 0;
-        margin-right: 30px;
-        margin-top: 15px;
-    }
-    
-    .section-destok {
-        display: none;
-    }
-    
-    .list-menu-destok {
-        display: none;
-    }
-    
-    /* Animacion de Menu-movil */
-    #enlaces {
-        width: 100%;
-        position: fixed;
-        top: 55px;
-        background: #ffa095;
-        background: linear-gradient(to right, #ffd67e, #ff897c);
-        transition: all 1s ease;
-    }
-    
-    #enlaces p {
-        height: 30px;
-        border: 1px solid white;
-        margin: 0;
-        padding: 15px;
-        padding-top: 22px;
-    }
-    
-    .animationTwo {
-        clip-path: circle(141.4% at 0 0);
-    }
-    
-    .animationOne {
-        clip-path: circle(0.0% at 0 0);
-    }
-    
-    #main {
-        margin-top: 55px;
-    }
-    
-    #main-muro {
-        margin-top: 55px;
-    }
-    
-    @media (min-width: 600px) {
-        /* View-home */
-    
-        #container .div-home {
-            display: flex;
-            margin-top: 7%;
-        }
-
-
-        #welcome-text.msj::after {
-            font-weight: negrita;
-            content: " Una red social donde tu mascota es la estrella ;) ";
-            display: block;
-            margin-top: 10px;
-        }
-
-        #password, #e-mail {
-            width: 50%;
-        }
-    
-        /* View-muro */
-    
-        #main-muro {
-            display: flex;
-            justify-content: flex-start;
-        }
-        .section-publics-muro {
-            width: 50%;
-            margin-top: 2%;
-        }
-        .section-info-muro {
-            width: 50%;
-        }
-        .form, .coment {
-            margin-left: 3%;
-            width: 65%;
-        }
-    
-        .section-info-muro {
-            display: none;
-        }
-        .section-destok {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            width: 50%;
-            margin-top: 2%;
-        }
-        .div-info-muro {
-            display: flex;
-            width: 65%;
-            justify-content: flex-start;
-            border: 1px solid grey;
-        }
-        .photo-info-muro {
-            width: 100%;
-            height:150px;
-        }
-        .fig-portada {
-            margin: 0;
-            width: 65%;
-            height: 150px;
-            border: 1px solid grey;
-        }
-        .figure-photo {
-            margin-left: 10px;
-        }
-        .logo-destok {
-            font-family: sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .header-movil {
-            display: none;
-        }
-        .list-menu-destok {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            background: rgb(211, 211, 211);
-            box-shadow: rgb(143, 143, 143) 5px 1px 8px;
-            height: 55px;
-        }
-        #out-menu-destok {
-            padding-right: 40px;
-        }
-        #icon-down {
-            display: inline-block;
-            border: 1px solid grey;
-            width: 20px;
-            height: 20px;
-            margin-left: 5px;
-        }
-        #enlaces-destok {
-            width: 100%;
-            position: fixed;
-            top: 55px;
-            background: #ffa095;
-            background: linear-gradient(to right, #ffd67e, #ff897c);
-            transition: all 1s ease;
-        }
-        
-        #enlaces-destok p {
-            height: 30px;
-            border: 1px solid white;
-            margin: 0;
-            padding: 15px;
-            padding-top: 22px;
-        }
-    }}
+}

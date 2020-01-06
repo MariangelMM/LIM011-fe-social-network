@@ -16,9 +16,6 @@ export const promOutUser = () => {
   });
 }
 
-
-
-
  export const saveUsers = () => {
     var user = firebase.auth().currentUser;
 
