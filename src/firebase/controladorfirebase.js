@@ -23,3 +23,16 @@ export const logInFacebook = () => {
  export const outUser = () => {
   return firebase.auth().signOut();
 };
+
+export const getDataUser = (user) => {
+  return firebase.firestore().collection('usuarios').doc(user.uid).get();
+  
+}
+
+export const postUser = (textarea) => {
+return firebase.firestore().collection("publicaciones").add({
+  contenido: textarea,
+})}
+export const showPost = () => {
+return firebase.firestore().collection("publicaciones")
+}

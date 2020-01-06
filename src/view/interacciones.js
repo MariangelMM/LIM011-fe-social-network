@@ -1,7 +1,8 @@
 
-import { outUser } from '../firebase/controladorfirebase.js'
+import { outUser, postUser , showPost} from '../firebase/controladorfirebase.js'
 
-export const INTERACCIONES = () => {
+export const INTERACCIONES = (user, posts) => {
+  console.log('llegue a la vista', user)
   const db = firebase.firestore();
   const viewCatalogo = `  
   
@@ -12,8 +13,8 @@ export const INTERACCIONES = () => {
 </header>
 
 <nav class="contenedor flex">
-<img class="" src="img/portada.jpg" alt="foto de portada">
-<img id="fotoPerfil" class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
+<img class="" src="" alt="foto de portada">
+<img id="fotoPerfil" class="photo" src="" alt="foto de perfil">
 <p id="nombreUsuarioDestok" class="name-user">Nombre Usuario</p>
 
 
@@ -32,17 +33,13 @@ export const INTERACCIONES = () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
+
   // PUBLICAR 
   const publicar = divElement.querySelector('#compartir');
   publicar.addEventListener('click', (e) => {
     e.preventDefault()
-    const textarea = divElement.querySelector('#texto').value;
-    console.log(textarea);
-
-    db.collection("publicaciones").add({
-      contenido: textarea,
-    })
-      .then(function (docRef) {
+    const textarea = divElement.querySelector('#texto').value;   
+      postUser(textarea).then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
         divElement.querySelector('#texto').value = '';
       })
@@ -52,7 +49,7 @@ export const INTERACCIONES = () => {
   });
   // LISTAR PUBLICACIONES 
   const comentarios = divElement.querySelector('#comentarios');
-  db.collection("publicaciones").onSnapshot((querySnapshot) => {
+  showPost().onSnapshot((querySnapshot) => {
     comentarios.innerHTML = '';
     querySnapshot.forEach((doc) => {
 
@@ -64,7 +61,7 @@ export const INTERACCIONES = () => {
                 <p>Publicado por </p><i class="fas fa-times"></i>
                 </div>
                   <p class="text-coment">${doc.data().contenido}</p>
-               
+                  <button id="btn-delete">X</button>
               </div>
              `
     });
@@ -77,20 +74,22 @@ export const INTERACCIONES = () => {
     outUser().then(() => {
       window.location.hash = '#/';
     })
+    
+    
   });
+
   //asignancion datos básicos a perfil
 
   const fotoPerfil = divElement.querySelector('#fotoPerfil');
   const nombreUsuario = divElement.querySelector('#nombreUsuario');
   const nombreUsuarioDestok = divElement.querySelector('#nombreUsuarioDestok');
 
+  fotoPerfil.src = user.photoUrl;
+  nombreUsuario.innerHTML = user.name;
+  nombreUsuarioDestok.innerHTML = user.name;
 
-  const user = firebase.auth().currentUser
-  //console.log(user)
-  fotoPerfil.src = user.photoURL;
-  nombreUsuario.innerHTML = user.displayName;
-  nombreUsuarioDestok.innerHTML = user.displayName;
-
+  
+  console.log('llegue añl final')
 
   return divElement;
 };

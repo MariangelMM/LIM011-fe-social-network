@@ -29,7 +29,7 @@ export const HOME = () => {
     document.getElementById('email').value = '';
     document.getElementById('password').value = '';
     const url = window.location.href;
-    window.location.href = url + '#/interacciones';
+    window.location.href = '#/interacciones';
 })
     .catch(function (error) {
       var errorCode = error.code;
@@ -47,7 +47,7 @@ export const HOME = () => {
     
    logInGoogle().then(function() {
     const url = window.location.href;
-    window.location.href = url + '#/interacciones';
+    window.location.href = '#/interacciones';
     saveUsers();
    });
   });
@@ -58,7 +58,7 @@ export const HOME = () => {
     
     logInFacebook().then(function() {
       const url = window.location.href;
-      window.location.href = url + '#/interacciones';
+      window.location.href = '#/interacciones';
       saveUsers();
   })
   });
