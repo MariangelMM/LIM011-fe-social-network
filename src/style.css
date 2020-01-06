@@ -151,7 +151,14 @@ body {
 .formulario{ 
     font-size: 20px;
 }
-header{
+
+}
+header nav{
     display: flex;
 }
+#text{
+    display: flex;
+    justify-content: center;
+    background: white;
+    
 }
