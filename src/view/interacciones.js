@@ -1,76 +1,100 @@
-import { añadirPost, outUser} from "../controladorfirebase.js";
+
+import { outUser } from '../firebase/controladorfirebase.js'
+
 export const INTERACCIONES = () => {
-    const db = firebase.firestore();
+  const db = firebase.firestore();
+  const viewCatalogo = `  
   
-    const viewHome = `
-    <header>
-    <nav>
-     <p>Usuario</p>
-     <h1 class="loguito">FOODBOOK</h1>
-     <button id='cerrar-sesion'>Cerrar Sesión</button>
-		</nav>
-    </header>
-    
-  
-    <section>
-    <div id="contenido-post">
-          <textarea id="texto" placeholder="¿Que estas pensando"cols="30" rows="10"></textarea>
-          <div class="compartir">
-              <button class="publicar" id="publicar">PUBLICAR</button>
-          </div>
-          </div> 
-    
-     <div id='tabla'></div>
-    
-    </section> `;
-  
-    const divElem = document.createElement('div');
-    divElem.innerHTML = viewHome;
+<header class="encabezado">
+<span id="nombreUsuario">Nombre</span>
+<p>FOOD BOOK</p>
+<menu id="cerrarSesion">Cerrar sesión</i></menu>
+</header>
 
-  //PUBLICAR
-    const publicar = divElem.querySelector('#publicar');
+<nav class="contenedor flex">
+<img class="" src="img/portada.jpg" alt="foto de portada">
+<img id="fotoPerfil" class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
+<p id="nombreUsuarioDestok" class="name-user">Nombre Usuario</p>
 
-    publicar.addEventListener('click', (e) => {
-      e.preventDefault()
-      const textarea = divElem.querySelector('#texto').value;
-      console.log(textarea);
-      añadirPost(textarea);
-      divElem.querySelector('#texto').value = '';
-  
-    });
-  
-  //LISTA DE PUBLICACIONES
-    const listaPublicaciones = divElem.querySelector('#tabla');
 
-    db.collection('publicaciones').onSnapshot((querySnapshot) => {
-      listaPublicaciones.innerHTML = '';
-      querySnapshot.forEach((doc) => {
-        tabla.innerHTML += `
-        <div id='post-publicado'>
-      <div id='caja-post'>
-        <div class="text">${doc.id}</div></br>
-        <div class="text">${doc.data().post}</div><br>
-    </div>
-     <button class='btn-eliminar' id='btn-eliminar-${doc.id}'>ELIMINAR</button>
-    
-  </div>
-`
+<section class="section-publics-muro">
+<form class="form">
+<textarea id="texto" placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
+<div class="btn-coment">
+<button class="btn-share" id="compartir">Compartir</button>
+</div>
+<div id="comentarios" class="coment"></div>
+</form>
+
+</nav> 
+
+`;
+
+  const divElement = document.createElement('div');
+  divElement.innerHTML = viewCatalogo;
+  // PUBLICAR 
+  const publicar = divElement.querySelector('#compartir');
+  publicar.addEventListener('click', (e) => {
+    e.preventDefault()
+    const textarea = divElement.querySelector('#texto').value;
+    console.log(textarea);
+
+    db.collection("publicaciones").add({
+      contenido: textarea,
+    })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+        divElement.querySelector('#texto').value = '';
       })
-      /* // BORRAR PUBLICACIONES
-     document.querySelector(`#btn-eliminar-${doc.id}`).addEventListener('click' , () =>{
-      db.collection('piblicaciones').doc(doc).delete().then(function() {
-        console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
+      .catch(function (error) {
+        console.error("Error: ", error);
+      });
+  });
+  // LISTAR PUBLICACIONES 
+  const comentarios = divElement.querySelector('#comentarios');
+  db.collection("publicaciones").onSnapshot((querySnapshot) => {
+    comentarios.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+
+      console.log(`${doc.id} => ${doc.data().contenido} `);
+
+      comentarios.innerHTML += `
+              <div class = "comment">
+                <div class="title-note">
+                <p>Publicado por </p><i class="fas fa-times"></i>
+                </div>
+                  <p class="text-coment">${doc.data().contenido}</p>
+               
+              </div>
+             `
     });
-     }) 
-   */
+  });
+
+
+  const outSesion = divElement.querySelector('#cerrarSesion');
+  outSesion.addEventListener('click', (e) => {
+    e.preventDefault();
+    outUser().then(() => {
+      window.location.hash = '#/';
     })
-    const outSesion = divElem.querySelector('#cerrar-sesion');
-    outSesion.addEventListener('click', (e) => {
-      e.preventDefault();
-     outUser();
-    })
-  
-    return divElem;
+  });
+  //asignancion datos básicos a perfil
+
+  const fotoPerfil = divElement.querySelector('#fotoPerfil');
+  const nombreUsuario = divElement.querySelector('#nombreUsuario');
+  const nombreUsuarioDestok = divElement.querySelector('#nombreUsuarioDestok');
+
+
+  const user = firebase.auth().currentUser
+  //console.log(user)
+  fotoPerfil.src = user.photoURL;
+  nombreUsuario.innerHTML = user.displayName;
+  nombreUsuarioDestok.innerHTML = user.displayName;
+
+
+  return divElement;
 };
+
+
+
+

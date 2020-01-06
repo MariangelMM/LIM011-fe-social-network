@@ -1,5 +1,5 @@
-import { logear, logInGoogle, logInFacebook, observador } from '../controladorfirebase.js'
-
+import { logear, logInFacebook, logInGoogle } from '../firebase/controladorfirebase.js'
+import { saveUsers } from '../firebase/autenticadorfirebase.js';
 
 export const HOME = () => {
   const viewHome = `
@@ -41,27 +41,27 @@ export const HOME = () => {
 
 
 
-
-
-
-
-
   // click google
   divElem.querySelector('#google').addEventListener('click' , (e) => {
     e.preventDefault()
     
-   logInGoogle();
+   logInGoogle().then(function() {
+    const url = window.location.href;
+    window.location.href = url + '#/interacciones';
+    saveUsers();
+   });
   });
+
   // click facebbok
   divElem.querySelector('#facebook').addEventListener('click' , (e) => {
     e.preventDefault()
     
-   logInFacebook();
+    logInFacebook().then(function() {
+      const url = window.location.href;
+      window.location.href = url + '#/interacciones';
+      saveUsers();
+  })
   });
-
-observador();
-
-
 
 
 return divElem; 
