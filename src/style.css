@@ -95,10 +95,9 @@ body {
     top: 0;
 }
 
-.section-publics-muro {
-    width: 50%;
-    margin-top: 2%;
-}
+
+
+
 .form {
     width: 328px;
     border: 1px solid grey;
@@ -111,12 +110,6 @@ body {
 }
 
 
-.title-note {
-    display: flex;
-    justify-content: space-between;
-    background: grey;
-    padding: 15px;
-}
 
 .coment { 
     width: 328px;

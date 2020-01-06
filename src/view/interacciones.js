@@ -15,10 +15,10 @@ export const INTERACCIONES = () => {
 <img class="" src="img/portada.jpg" alt="foto de portada">
 <img id="fotoPerfil" class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
 <p id="nombreUsuarioDestok" class="name-user">Nombre Usuario</p>
-</nav> 
+
 
 <section class="section-publics-muro">
-<form class="form flex">
+<form class="form">
 <textarea id="texto" placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
 <div class="btn-coment">
 <button class="btn-share" id="compartir">Compartir</button>
@@ -26,7 +26,7 @@ export const INTERACCIONES = () => {
 <div id="comentarios" class="coment"></div>
 </form>
 
-
+</nav> 
 
 `;
 
