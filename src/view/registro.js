@@ -1,6 +1,4 @@
-import { registrarUsuario } from '../firebase/controladorfirebase.js'
-
-import { saveUsers } from '../firebase/autenticadorfirebase.js';
+import { registrarUsuario , saveUsers} from '../firebase/controladorfirebase.js'
 
 export const REGISTRO = () => {
   const viewRegistro = `

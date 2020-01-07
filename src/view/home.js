@@ -1,11 +1,11 @@
-import { logear, logInFacebook, logInGoogle } from '../firebase/controladorfirebase.js'
-import { saveUsers } from '../firebase/autenticadorfirebase.js';
+import { logear, logInFacebook, logInGoogle, saveUsers } from '../firebase/controladorfirebase.js'
 
 export const HOME = () => {
   const viewHome = `
     <div class="contenedor flex">
     <img class="logo" src="./imagenes/loguito.png" >
-        <form class="formulario flex">
+    <form class="formulario flex">
+        <p class="parrafo"> Bienvenid@ , Conéctate con tu red social preferida <br> y comparte tus conocimientos de cocina. </p>
           <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="text">
           <input class="inputs flex" id="password" placeholder="Contraseña" type="password">
            <div class="recuadro flex"> 
@@ -14,7 +14,7 @@ export const HOME = () => {
             <input id="facebook" type=image src="./imagenes/facebook.svg">
             <input id="google" type=image src="./imagenes/google.svg">
           </div>
-            <p class="parrafo"> Bienvenid@ , Conéctate con tu red social preferida <br> y comparte tus conocimientos de cocina. </p>
+            
             <p class="flex">¿No tienes una cuenta? <a href="#/registro" id="enlace_registrar" class="azul bold">Regístrate</a></p>
           </div>
         </form>
@@ -46,7 +46,6 @@ export const HOME = () => {
     e.preventDefault()
     
    logInGoogle().then(function() {
-    const url = window.location.href;
     window.location.href = '#/interacciones';
     saveUsers();
    });
@@ -57,7 +56,6 @@ export const HOME = () => {
     e.preventDefault()
     
     logInFacebook().then(function() {
-      const url = window.location.href;
       window.location.href = '#/interacciones';
       saveUsers();
   })

@@ -8,7 +8,7 @@ export const logear = (email, password) => firebase.auth()
 
 //login  con Google
 export const logInGoogle = () => {
-  var provider = new firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider)
 };
 
@@ -24,6 +24,17 @@ export const logInFacebook = () => {
   return firebase.auth().signOut();
 };
 
+export const saveUsers = () => {
+  const user = firebase.auth().currentUser;
+  if (user != null) 
+  firebase.firestore().collection('usuarios').doc(user.uid).set({
+    name : user.displayName,
+    email : user.email,
+    photoUrl : user.photoURL,
+    uid : user.uid
+  })
+};
+
 export const getDataUser = (user) => {
   return firebase.firestore().collection('usuarios').doc(user.uid).get();
   
@@ -31,8 +42,13 @@ export const getDataUser = (user) => {
 
 export const postUser = (textarea) => {
 return firebase.firestore().collection("publicaciones").add({
-  contenido: textarea,
+  contenido: textarea
 })}
+
 export const showPost = () => {
 return firebase.firestore().collection("publicaciones")
+}
+
+export const DeletePost = (id) => {
+  return firebase.firestore().collection("publicaciones").doc(id).delete();
 }

@@ -12,7 +12,8 @@ export const changeView = (router) => {
         case '#/registro':
             { return container.appendChild(componentes.registro()) }
         case '#/interacciones':
-            {   const user = {
+              {  
+                   const user = {
                     uid: firebase.auth().currentUser.uid,
                 }
                 getDataUser(user)
@@ -20,6 +21,8 @@ export const changeView = (router) => {
                         const dataDelUsuario = doc.data();
                         container.appendChild(componentes.interacciones(dataDelUsuario))
                     })
+
+
                 break;
             }
         default:
