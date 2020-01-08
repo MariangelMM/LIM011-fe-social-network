@@ -52,3 +52,9 @@ return firebase.firestore().collection("publicaciones")
 export const DeletePost = (id) => {
   return firebase.firestore().collection("publicaciones").doc(id).delete();
 }
+
+export const editPost = (id, contenido) => {
+  return firebase.firestore().collection("publicaciones").doc(id).update({
+    contenido: contenido
+  });
+}
