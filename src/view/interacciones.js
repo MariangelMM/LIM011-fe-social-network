@@ -50,7 +50,7 @@ export const INTERACCIONES = (user) => {
                 <div class="title-note">
                 <p>Publicado por </p><i class="fas fa-times"></i>
                 </div>
-                <div id="postOriginal">
+                <div id="contPostOriginal">
                   <p class="text-coment">${doc.data().contenido}</p>
                   <button id="btn-delete-${doc.id}">X</button>
                   <button id="btn-update-${doc.id}">EDITAR</button>
@@ -70,11 +70,12 @@ export const INTERACCIONES = (user) => {
 
       })
       //EDITAR POST 
+      const contPostOriginal = containerPost.querySelector('#contPostOriginal');
       const contEditar = containerPost.querySelector('#contenedorEditar');
       const editar = containerPost.querySelector(`#btn-update-${doc.id}`);
       editar.addEventListener('click', (e)=> {
         e.preventDefault();
-       
+        contPostOriginal.classList.add('hide');
         contEditar.classList.remove('hide');
         
       
