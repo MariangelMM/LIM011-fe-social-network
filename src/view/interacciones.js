@@ -2,25 +2,36 @@
 import { outUser, postUser , showPost, DeletePost} from '../firebase/controladorfirebase.js'
 
 export const INTERACCIONES = (user, posts) => {
-  const viewCatalogo = `  
-    <header class="encabezado">
-    <span id="nombreUsuario">${user.name}</span>
-    <p>FOOD BOOK</p>
-    <menu id="cerrarSesion">Cerrar sesión</i></menu>
-    </header>
-    <nav class="contenedor flex">
-    <img class="" src="${user.photoUrl}" alt="foto de portada">
-    <img id="fotoPerfil" class="photo" src="${user.photoUrl}" alt="foto de perfil">
-    <p id="nombreUsuarioDestok" class="name-user">${user.name}</p>
-    <section class="section-publics-muro">
-    <form class="form">
-    <textarea id="texto" placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
-    <div class="btn-coment">
-    <button class="btn-share" id="compartir">Compartir</button>
+  const viewCatalogo = ` 
+  <header>
+    <nav>
+      <span id="nombreUsuario">${user.name}</span>
+      <p>FOOD BOOK</p>
+      <menu id="cerrarSesion">Cerrar sesión</i>
+    </nav>
+  </header>
+  
+  <div class="body">
+    <div class="profile-section">
+      <img class="cover-page" src="${user.photoUrl}" alt="foto de portada">
+      <div class="info-user">
+        <img id="fotoPerfil" class="avatar" src="${user.photoUrl}" alt="foto de perfil">
+        <div>
+          <p id="nombreUsuarioDestok" class="name-user">${user.name}</p>
+        </div>
+      </div>
     </div>
-    <div id="comentarios" class="coment"></div>
-    </form>
-    </nav> `;
+    <div class="publications-section">
+      <form class="form">
+        <textarea class="message-post" id="texto" placeholder="¿Qué quieres compartir?" cols="30" rows="4"></textarea>
+        <div class="buttons">
+          <button class="btn-post" id="compartir">Compartir</button>
+         </div>
+      </form>
+      <div id="comentarios" >
+      </div>
+    </div>
+  </div> `;
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
@@ -49,16 +60,16 @@ export const INTERACCIONES = (user, posts) => {
     querySnapshot.forEach((doc) => {
        
         comentarios.innerHTML += `
-              <div class = "comment">
-                <div class="title-note">
-                <p>Publicado por </p><i class="fas fa-times"></i>
-                </div>
-                  <p class="text-coment">${doc.data().contenido}</p>
-                  <button id="btn-delete-${doc.id}">X</button>
-              </div>
+        <div class="div-post">
+        <div class="post-header">
+              <p class="message-post">Publicado por </p>
+                <p class="text-coment">${doc.data().contenido}</p>
+                <button class="btn-delete"  id="btn-delete-${doc.id}">X</button>
+            </div>
+            </div>
              `
              //eliminar post 
-             const eliminar = divElement.querySelector(`#btn-delete-${doc.id}`)
+             const eliminar = document.querySelector(`#btn-delete-${doc.id}`)
              eliminar.addEventListener('click', (e) => {
               e.preventDefault();
               const deleteNoteOnClick = (doc) => DeletePost(doc.id);
