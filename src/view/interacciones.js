@@ -1,7 +1,7 @@
 
-import { outUser, postUser , showPost, DeletePost} from '../firebase/controladorfirebase.js'
+import { outUser, postUser, showPost, DeletePost, editPost } from '../firebase/controladorfirebase.js'
 
-export const INTERACCIONES = (user, posts) => {
+export const INTERACCIONES = (user) => {
   const viewCatalogo = `  
     <header class="encabezado">
     <span id="nombreUsuario">${user.name}</span>
@@ -18,7 +18,7 @@ export const INTERACCIONES = (user, posts) => {
     <div class="btn-coment">
     <button class="btn-share" id="compartir">Compartir</button>
     </div>
-    <div id="comentarios" class="coment"></div>
+    <div id="publicPost"></div>
     </form>
     </nav> `;
 
@@ -27,49 +27,66 @@ export const INTERACCIONES = (user, posts) => {
 
   // PUBLICAR 
   const publicar = divElement.querySelector('#compartir');
-  console.log(document)
   publicar.addEventListener('click', (e) => {
     e.preventDefault()
+    const textarea = divElement.querySelector('#texto').value;
 
-    const textarea = divElement.querySelector('#texto').value;   
-
-      postUser(textarea).then(function (docRef) {
-        console.log("nombre del usuario", docRef.user);
-        divElement.querySelector('#texto').value = '';
-      })
+    postUser(textarea).then(function (docRef) {
+      divElement.querySelector('#texto').value = '';
+    })
       .catch(function (error) {
         console.error("Error: ", error);
       });
   });
   // LISTAR PUBLICACIONES 
-  const comentarios = divElement.querySelector('#comentarios');
+  const publicPost = divElement.querySelector('#publicPost');
 
   showPost().onSnapshot((querySnapshot) => {
-    comentarios.innerHTML = '';
+    publicPost.innerHTML = '';
     querySnapshot.forEach((doc) => {
-       
-        comentarios.innerHTML += `
-              <div class = "comment">
+      const containerPost = document.createElement('div');
+      containerPost.classList.add('post');
+      containerPost.innerHTML = `
                 <div class="title-note">
                 <p>Publicado por </p><i class="fas fa-times"></i>
                 </div>
+                <div id="postOriginal">
                   <p class="text-coment">${doc.data().contenido}</p>
                   <button id="btn-delete-${doc.id}">X</button>
-              </div>
+                  <button id="btn-update-${doc.id}">EDITAR</button>
+                  </div>
+                  <div id='contenedorEditar' class='hide'>
+                  <textarea id='postEditar'  cols="30" rows="10"></textarea>
+                  <button id="guardarEdit" >GUARDAR</button>
+                  </div>
              `
-             //eliminar post 
-             const eliminar = divElement.querySelector(`#btn-delete-${doc.id}`)
-             eliminar.addEventListener('click', (e) => {
-              e.preventDefault();
-              const deleteNoteOnClick = (doc) => DeletePost(doc.id);
-              deleteNoteOnClick(doc);
-             })
-             
-   })
-    });
-    
+      //eliminar post 
+      publicPost.appendChild(containerPost)
+
+      const eliminar = containerPost.querySelector(`#btn-delete-${doc.id}`);
+      eliminar.addEventListener('click', (e) => {
+        e.preventDefault();
+        DeletePost(doc.id);
+
+      })
+      //EDITAR POST 
+      const contEditar = containerPost.querySelector('#contenedorEditar');
+      const editar = containerPost.querySelector(`#btn-update-${doc.id}`);
+      editar.addEventListener('click', (e)=> {
+        e.preventDefault();
+       
+        contEditar.classList.remove('hide');
+        
+      
+/*         const textoEdit = divElement.querySelector('#texto').value;
+        editPost(doc.id, textoEdit); */
+      }) 
 
 
+    })
+  });
+
+  //cerrar sesion
   const outSesion = divElement.querySelector('#cerrarSesion');
   outSesion.addEventListener('click', (e) => {
     e.preventDefault();
@@ -78,9 +95,10 @@ export const INTERACCIONES = (user, posts) => {
     })
   });
 
-    
-   
- 
+
+
+
+
   return divElement;
 };
 
