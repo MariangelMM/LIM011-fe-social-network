@@ -58,18 +58,22 @@ export const INTERACCIONES = (user, posts) => {
       const containerPost = document.createElement('div');
       containerPost.classList.add('post');
       containerPost.innerHTML = `
-                <div class="div-post">
-                <div class="post-header">
-                <p class="message-post">Publicado por </p><i class="fas fa-times"></i>
-                </div>
+
+
+                
+                <div class="form">
+                <button class="btn-borrar" id="btn-delete-${doc.id}">X</button>
+                <p class="message-public">Publicado por </p>
                 <div id="contPostOriginal">
-                  <p class="text-coment">${doc.data().contenido}</p>
-                  <button id="btn-delete-${doc.id}">X</button>
+                  <p class="message-public">${doc.data().contenido}</p>
                   <button id="btn-update-${doc.id}">EDITAR</button>
-                  </div>
+                  
+                  
+                </div>
                   <div id='contenedorEditar' class='hide'>
                   <textarea id='postEditar'  cols="30" rows="10"></textarea>
                   <button id="guardarEdit" >GUARDAR</button>
+                  </div>
                   </div>
              `
       //eliminar post 

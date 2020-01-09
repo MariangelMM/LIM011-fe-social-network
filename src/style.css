@@ -114,6 +114,8 @@ body {
 
 
 
+
+
 .coment { 
     width: 328px;
     border: 1px solid grey;
@@ -211,6 +213,13 @@ nav li{
     border-radius: 3px;
     margin-bottom: 9%;
 }
+
+
+.form .btn-borrar{
+    background: red;
+    justify-content: flex-end
+}
+
 .all-publications{
     width: 100%;
 }
@@ -222,6 +231,15 @@ nav li{
     resize: none;
     font-size: 0.9rem;
 }
+
+.message-public{
+    width: 84%;
+    margin-top: 6%;
+    border-radius: 3px;
+    resize: none;
+    font-size: 0.9rem;
+}
+
 .buttons{
     width: 86%;
     margin: 3%;
@@ -242,6 +260,8 @@ nav li{
     outline: none;
     cursor: pointer;
 }
+
+
 
 
 @media all and (min-width: 768px){
