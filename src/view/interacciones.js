@@ -63,13 +63,13 @@ export const INTERACCIONES = (user, posts) => {
                 <p class="message-post">Publicado por </p><i class="fas fa-times"></i>
                 </div>
                 <div id="contPostOriginal">
-                  <p class="text-coment">${doc.data().contenido}</p>
+                  <p id="post" class="text-coment">${doc.data().contenido}</p>
                   <button id="btn-delete-${doc.id}">X</button>
                   <button id="btn-update-${doc.id}">EDITAR</button>
                   </div>
                   <div id='contenedorEditar' class='hide'>
                   <textarea id='postEditar'  cols="30" rows="10"></textarea>
-                  <button id="guardarEdit" >GUARDAR</button>
+                  <button id="btn-update-save-${doc.id}" >GUARDAR</button>
                   </div>
              `
       //eliminar post 
@@ -85,15 +85,24 @@ export const INTERACCIONES = (user, posts) => {
       const contPostOriginal = containerPost.querySelector('#contPostOriginal');
       const contEditar = containerPost.querySelector('#contenedorEditar');
       const editar = containerPost.querySelector(`#btn-update-${doc.id}`);
+
       editar.addEventListener('click', (e)=> {
         e.preventDefault();
         contPostOriginal.classList.add('hide');
         contEditar.classList.remove('hide');
+       containerPost.querySelector('#postEditar').value = doc.data().contenido 
+
         
-      
-/*         const textoEdit = divElement.querySelector('#texto').value;
-        editPost(doc.id, textoEdit); */
-      }) 
+      const guardar = containerPost.querySelector(`#btn-update-save-${doc.id}`);
+
+      guardar.addEventListener('click', (e) => {
+        e.preventDefault();
+          const textoEditado = containerPost.querySelector('#postEditar').value; 
+          console.log(textoEditado);
+          
+        editPost(doc.id, textoEditado);
+      })
+        }) 
 
 
     })
