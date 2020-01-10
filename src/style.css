@@ -2,33 +2,40 @@
     margin: 0; padding: 0; 
     font-family: Arial, Helvetica, sans-serif;
 }   
-.hide {
-    display: none;
-} 
 body {
     margin:0;
     padding: 0;
     height: 100vh;
+    background-image: url(./imagenes/fondo.jpg);
 }
-.verde{
-    background-color: #23b574;
+
+
+/* Vista de login */
+
+.contenedor{
+    flex-direction: column;
+    justify-content: center;   
+    align-items: center; 
+}
+.flex{
+    display: flex;
+}
+.logo{
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px;
+    background-size: cover;
 }
 .formulario{
     flex-direction: column;
     align-items: center;
     font-size: 20px;
 }
-.contenedor{
-    flex-direction: column;
-    justify-content: center;   
-    align-items: center; 
-}
-.registro{
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+.parrafo {
 
+    display: flex;
+    text-align: center;
+}
 .inputs {
     flex-direction: column;
     font-size: 20px;
@@ -40,11 +47,6 @@ body {
     outline: none;
     border: 1px solid 
 }
-.recuadro{
-    align-items: center;
-    flex-direction: column;
-    margin-top: 25px;
-}
 .boton{
     border-radius: 25px;
     font-size: 14px;
@@ -55,13 +57,9 @@ body {
     outline: none;
     color: white;
 }
-.logo{
-    width: 100%;
-    max-width: 400px;
-    min-width: 300px;
-    background-size: cover;
+.verde{
+    background-color: #23b574;
 }
-
 .formulario .logo_redes input{
     width: 3em;
     height: auto;
@@ -72,104 +70,36 @@ body {
     height: 3em;
     display: flex;
     justify-content: center;
-    
 }
-
-.flex{
-    display: flex;
-}
-.block{
-    display: block;
-}
-
-.parrafo {
-
-  display: flex;
-  text-align: center;
-}
-
-.encabezado {
-    overflow: hidden;
-    background-color: rgb(233, 120, 139);
-    width: 100%;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    top: 0;
-}
-
-
-
-
-.form {
-    width: 328px;
-    border: 1px solid grey;
-    padding: 20px;
-    border-radius: 3px;
-    margin-bottom: 25px;
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-
-
-
-.coment { 
-    width: 328px;
-    border: 1px solid grey;
-    border-radius: 3px;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-    margin-bottom: 17px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media screen and (min-width:801px) {
-.contenedor{
-    width: 100%;
-    height: 100vh;
-    flex-direction: row;
-}
-.logo{
-    width: 100%;
-}
-.inputs{
-    font-size: 20px;
-    width: 250px;
-    height: 30px;
-}
-.formulario{ 
-    font-size: 20px;
+    .contenedor{
+        width: 100%;
+        height: 100vh;
+        flex-direction: row;
+    }
+    .logo{
+        width: 100%;
+    }
+    .inputs{
+        font-size: 20px;
+        width: 250px;
+        height: 30px;
+    }
 }
 
-}
-header nav{
-    display: flex;
-}
-#text{
-    display: flex;
+
+/* Vista de Registro */
+
+.registro{
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    background: white;
-    
 }
 
+/* Vista de interacciones */
 header{
-    background-color: rgb(211, 209, 209);
+    background-color:#23b574;
     background-size: 130px;
     background-repeat: no-repeat;
     background-position: center;
@@ -183,8 +113,9 @@ nav{
     font-size: 1.2rem;
     font-weight: bold;
 }
-nav li{
-    cursor: pointer;
+
+header nav{
+    display: flex;
 }
 
 .profile-section{
@@ -194,47 +125,57 @@ nav li{
 .cover-page{
     display: none;
 }
+.info-user{
+    display: flex;
+    flex-direction: row;
+}
 .avatar{
     width: 70px;
     height: 70px;
     border: 1px solid #ccc;
     border-radius: 50%;
 }
-.info-user{
-    display: flex;
-    flex-direction: row;
-}
-.form{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ccc;
+.form {
+    width: 328px;
+    border: 1px solid grey;
+    padding: 20px;
     border-radius: 3px;
-    margin-bottom: 9%;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 .form .btn-borrar{
-    background: red;
-    justify-content: flex-end
+    align-self: flex-end;
+    justify-content: flex-start;
+    cursor: pointer;
 }
-
-.all-publications{
-    width: 100%;
+.form .user-post{
+    width: 84%;
+    margin-top: 15px;
+    border-radius: 3px;
+    resize: none;
+    font-size: 0.9rem;
+}
+.form .btn-editar{
+    align-self: flex-end;
+    justify-content: flex-end;
+    background-color: rgb(155, 224, 66);
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    color:white;
+    font-size: 0.85rem;
+    width: 82px;
+    height: 30px;
+    font-weight: bold;
+    outline: none;
 }
 .message-post{
     width: 84%;
     margin-top: 6%;
     border: 1px solid #ccc;
-    border-radius: 3px;
-    resize: none;
-    font-size: 0.9rem;
-}
-
-.message-public{
-    width: 84%;
-    margin-top: 6%;
     border-radius: 3px;
     resize: none;
     font-size: 0.9rem;
@@ -260,11 +201,7 @@ nav li{
     outline: none;
     cursor: pointer;
 }
-
-
-
-
-@media all and (min-width: 768px){
+@media all and  (min-width:801px){
     .body{
         display: flex;
         flex-direction: row;
@@ -300,4 +237,3 @@ nav li{
         width: 93%;
     }
 }
-

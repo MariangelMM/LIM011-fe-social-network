@@ -8,8 +8,8 @@ export const HOME = () => {
         <p class="parrafo"> Bienvenid@ , Conéctate con tu red social preferida <br> y comparte tus conocimientos de cocina. </p>
           <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="text">
           <input class="inputs flex" id="password" placeholder="Contraseña" type="password">
-           <div class="recuadro flex"> 
-            <button class= "boton verde bold" type="button" id="btn_ingresar">INGRESA</button>
+
+            <button class= "boton verde" type="button" id="btn_ingresar">INGRESA</button>
           <div class="logo_redes">
             <input id="facebook" type=image src="./imagenes/facebook.svg">
             <input id="google" type=image src="./imagenes/google.svg">

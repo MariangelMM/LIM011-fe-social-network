@@ -3,6 +3,7 @@ import { outUser, postUser, showPost, DeletePost, editPost } from '../firebase/c
 
 export const INTERACCIONES = (user, posts) => {
   const viewCatalogo = ` 
+  <body>
   <header>
     <nav>
       <span id="nombreUsuario">${user.name}</span>
@@ -17,7 +18,7 @@ export const INTERACCIONES = (user, posts) => {
       <div class="info-user">
         <img id="fotoPerfil" class="avatar" src="${user.photoUrl}" alt="foto de perfil">
         <div>
-          <p id="nombreUsuarioDestok" class="name-user">${user.name}</p>
+          <p id="nombreUsuarioDestok" >${user.name}</p>
         </div>
       </div>
     </div>
@@ -31,7 +32,8 @@ export const INTERACCIONES = (user, posts) => {
       <div id="publicPost" >
       </div>
     </div>
-  </div> `;
+  </div>
+  </body> `;
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
@@ -63,13 +65,11 @@ export const INTERACCIONES = (user, posts) => {
                 
                 <div class="form">
                 <button class="btn-borrar" id="btn-delete-${doc.id}">X</button>
-                <p class="message-public">Publicado por </p>
+                <p class="user-post">Publicado por </p>
                 <div id="contPostOriginal">
                   <p id="post" class="message-public">${doc.data().contenido}</p>
-                  <button id="btn-update-${doc.id}">EDITAR</button>
-                  
-                  
                 </div>
+                <button  class="btn-editar" id="btn-update-${doc.id}">EDITAR</button>
                   <div id='contenedorEditar' class='hide'>
                   <textarea id='postEditar'  cols="30" rows="10"></textarea>
                   <button id="btn-update-save-${doc.id}" >GUARDAR</button>
