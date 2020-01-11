@@ -12,17 +12,16 @@ export const INTERACCIONES = (user, posts) => {
     </nav>
   </header>
   
-  <div class="body">
+  <div class="publicaciones">
     <div class="profile-section">
       <img class="cover-page" src="${user.photoUrl}" alt="foto de portada">
       <div class="info-user">
         <img id="fotoPerfil" class="avatar" src="${user.photoUrl}" alt="foto de perfil">
-        <div>
-          <p id="nombreUsuarioDestok" >${user.name}</p>
-        </div>
+        <p id="nombreUsuarioDestok" >${user.name}</p>
       </div>
-    </div>
-    <div class="publications-section">
+      </div>
+    
+  <div class="publications-section">
       <form class="form">
         <textarea class="message-post" id="texto" placeholder="¿Qué quieres compartir?" cols="30" rows="4"></textarea>
         <div class="buttons">
@@ -63,18 +62,22 @@ export const INTERACCIONES = (user, posts) => {
 
 
                 
-                <div class="form">
-                <button class="btn-borrar" id="btn-delete-${doc.id}">X</button>
-                <p class="user-post">Publicado por </p>
-                <div id="contPostOriginal">
-                  <p id="post" class="message-public">${doc.data().contenido}</p>
-                </div>
-                <button  class="btn-editar" id="btn-update-${doc.id}">EDITAR</button>
-                  <div id='contenedorEditar' class='hide'>
-                  <textarea id='postEditar'  cols="30" rows="10"></textarea>
-                  <button id="btn-update-save-${doc.id}" >GUARDAR</button>
-                  </div>
-                  </div>
+       <div class="form">
+          <div class="btn-borrar">
+            <p class="user-post">Publicado por </p>
+            <span id="btn-delete-${doc.id}"><img class="btn-eliminar" src="./imagenes/eliminar.png"></span>
+         
+          </div>
+
+          <div id="contPostOriginal">
+            <p id="post" class="message-public">${doc.data().contenido}</p>
+          </div>
+          <span id="btn-update-${doc.id}"><img class="btn-editar" src="./imagenes/editar.png"></span>
+          <div id='contenedorEditar' class='hide'>
+              <textarea id='postEditar'  cols="30" rows="10"></textarea>
+              <span id="btn-update-save-${doc.id}"><img class="btn-guardar" src="./imagenes/guardar.png"></span>
+          </div>
+       </div>
              `
       //eliminar post 
       publicPost.appendChild(containerPost)
