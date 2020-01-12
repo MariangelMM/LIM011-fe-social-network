@@ -3,35 +3,36 @@ import { outUser, postUser, showPost, DeletePost, editPost } from '../firebase/c
 
 export const INTERACCIONES = (user, posts) => {
   const viewCatalogo = ` 
-  <body>
-  <header>
-    <nav>
-      <span id="nombreUsuario">${user.name}</span>
-      <p>FOOD BOOK</p>
-      <menu id="cerrarSesion">Cerrar sesión</i>
-    </nav>
-  </header>
+   <body>
+     <header>
+       <nav>
+        <span id="nombreUsuario">${user.name}</span>
+        <p>FOOD BOOK</p>
+        <menu id="cerrarSesion">Cerrar sesión</i>
+       </nav>
+     </header>
   
-  <div class="publicaciones">
-    <div class="profile-section">
-      <img class="cover-page" src="${user.photoUrl}" alt="foto de portada">
-      <div class="info-user">
-        <img id="fotoPerfil" class="avatar" src="${user.photoUrl}" alt="foto de perfil">
-        <p id="nombreUsuarioDestok" >${user.name}</p>
-      </div>
-      </div>
+     
+     <main class="publicaciones">
+          <section class="seccion-perfil">
+            <img class="portada" src="${user.photoUrl}" alt="foto de portada">
+            <div class="info-user">
+               <img id="fotoPerfil" class="foto-perfil" src="${user.photoUrl}" alt="foto de perfil">
+               <p class="fondo" id="nombreUsuarioDestok" >${user.name}</p>
+            </div>
+          </section>
     
-  <div class="publications-section">
-      <form class="form">
-        <textarea class="message-post" id="texto" placeholder="¿Qué quieres compartir?" cols="30" rows="4"></textarea>
-        <div class="buttons">
-          <button class="btn-post" id="compartir">Compartir</button>
-         </div>
-      </form>
-      <div id="publicPost" >
-      </div>
-    </div>
-  </div>
+          <section class="seccion-publicacion">
+            <form class="form">
+              <textarea class="mensaje" id="texto" placeholder="¿Qué quieres compartir?" cols="30" rows="4"></textarea>
+              <div class="btn-enviar">
+                <button class="btn-compartir" id="compartir">Compartir</button>
+              </div>
+            </form>
+          <div id="publicPost" >
+          </div>
+          </section>
+     </main>
   </body> `;
 
   const divElement = document.createElement('div');
@@ -58,26 +59,21 @@ export const INTERACCIONES = (user, posts) => {
     querySnapshot.forEach((doc) => {
       const containerPost = document.createElement('div');
       containerPost.classList.add('post');
-      containerPost.innerHTML = `
-
-
-                
-       <div class="form">
-          <div class="btn-borrar">
-            <p class="user-post">Publicado por </p>
-            <span id="btn-delete-${doc.id}"><img class="btn-eliminar" src="./imagenes/eliminar.png"></span>
-         
-          </div>
-
-          <div id="contPostOriginal">
-            <p id="post" class="message-public">${doc.data().contenido}</p>
-          </div>
-          <span id="btn-update-${doc.id}"><img class="btn-editar" src="./imagenes/editar.png"></span>
-          <div id='contenedorEditar' class='hide'>
-              <textarea id='postEditar'  cols="30" rows="10"></textarea>
-              <span id="btn-update-save-${doc.id}"><img class="btn-guardar" src="./imagenes/guardar.png"></span>
-          </div>
-       </div>
+      containerPost.innerHTML = ` 
+       <section class="form">
+           <div class="cabecera-post">
+             <p class="user-post">Publicado por </p>
+             <span id="btn-delete-${doc.id}"><img class="btn-eliminar" src="./imagenes/eliminar.png"></span>
+           </div>
+           <div id="contPostOriginal">
+             <p id="post" class="message-public">${doc.data().contenido}</p>
+           </div>
+           <span id="btn-update-${doc.id}"><img class="btn-editar" src="./imagenes/editar.png"></span>
+           <div id='contenedorEditar' class='hide'>
+             <textarea id='postEditar'  cols="30" rows="10"></textarea>
+             <span id="btn-update-save-${doc.id}"><img class="btn-guardar" src="./imagenes/guardar.png"></span>
+           </div>
+       </section>
              `
       //eliminar post 
       publicPost.appendChild(containerPost)

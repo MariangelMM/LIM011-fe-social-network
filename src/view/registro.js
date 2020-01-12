@@ -3,8 +3,7 @@ import { registrarUsuario , saveUsers} from '../firebase/controladorfirebase.js'
 export const REGISTRO = () => {
   const viewRegistro = `
     <div class="registro flex">
-    <form class="formulario1 flex">
-    
+      <form class="formulario1 flex">
         <img class="logo1" src="./imagenes/loguito.png" alt="Logo">
         <input class="inputs flex" id="name" placeholder="Nombre Completo" type="text">
         <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="email"> 

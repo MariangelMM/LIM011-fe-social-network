@@ -169,12 +169,11 @@ header nav{
     justify-content: center;
     align-content: center;
 }
-.profile-section{
-    background: white;
+.seccion-perfil{
     width: 30%;
     margin: 3%;
 }
-.cover-page{  
+.portada{  
     display: block;
     width: 100%;
     height: 110px;
@@ -186,14 +185,19 @@ header nav{
     flex-direction: row;
     margin: 0em;
 }
-.avatar{
+.foto-perfil{
     width: 70px;
     height: 70px;
     border: 1px solid #ccc;
     border-radius: 50%;
 }
 
-.publications-section{
+.fondo{
+    background: white;
+    width: max-content;
+}
+
+.seccion-publicacion{
     width: 50%;
     margin-top: 2%;
 }
@@ -208,14 +212,14 @@ header nav{
     margin-right: auto;
     background: white;
 }
-.buttons{
+.btn-enviar{
     text-align: end;
 }
 
 .user-post{
     margin: 0em;
 }
-.btn-post {
+.btn-compartir {
     text-align: end;
     background-color: rgb(155, 224, 66);
     border: 1px solid #ccc;
@@ -229,7 +233,7 @@ header nav{
     cursor: pointer;
 }
 
-.btn-borrar{  
+.cabecera-post{  
     display: flex;
     justify-content: space-between;
     cursor: pointer;
@@ -251,6 +255,9 @@ header nav{
     margin: 0em ;
     cursor: pointer;
 }
+.hide{
+    display: none;
+}
 
 @media screen and (max-width:600px) {
 
@@ -260,13 +267,13 @@ header nav{
     .profile-section{
         width: 60%;
     }
-    .cover-page{
+    .portada{
         display: none;
     }
     .publications-section .form{
          margin: 1em;
     }
-    .message-post{
+    .mensaje{
         margin: auto;
     }
 }
