@@ -1,5 +1,5 @@
 //registrar firebase
-export const registrarUsuario = (email, password) => firebase.auth()
+export const registrarUsuario = ( email, password) => firebase.auth()
   .createUserWithEmailAndPassword(email, password);
 
 //login 
@@ -19,10 +19,12 @@ export const logInFacebook = () => {
   return firebase.auth().signInWithPopup(facebook)
  }
 
-
+// cerrar sesión
  export const outUser = () => {
   return firebase.auth().signOut();
 };
+//
+export const currentUser = () => firebase.auth().currentUser;
 
 export const saveUsers = () => {
   const user = firebase.auth().currentUser;
@@ -39,22 +41,30 @@ export const getDataUser = (user) => {
   return firebase.firestore().collection('usuarios').doc(user.uid).get();
   
 }
-
+// funcion para postear
 export const postUser = (textarea) => {
 return firebase.firestore().collection("publicaciones").add({
   contenido: textarea
 })}
 
+
 export const showPost = () => {
 return firebase.firestore().collection("publicaciones")
 }
-
+//eliminar un post
 export const DeletePost = (id) => {
   return firebase.firestore().collection("publicaciones").doc(id).delete();
 }
-
+//editar un post
 export const editPost = (id, contenido) => {
   return firebase.firestore().collection("publicaciones").doc(id).update({
     contenido: contenido
   });
+}
+
+//coleccion de registro de usuarios
+
+export const coleccionRegisterUser = (nameCollection, id, dataUserRegister) => {
+  firebase.firestore().collection(nameCollection).doc(id).set(dataUserRegister);
+
 }

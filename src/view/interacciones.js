@@ -13,7 +13,7 @@ export const INTERACCIONES = (user, posts) => {
   
   <div class="body">
     <div class="profile-section">
-      <img class="cover-page" src="${user.photoUrl}" alt="foto de portada">
+      <img class="cover-page" src="./imagenes/bannerloguito.png" alt="foto de portada">
       <div class="info-user">
         <img id="fotoPerfil" class="avatar" src="${user.photoUrl}" alt="foto de perfil">
         <div>
