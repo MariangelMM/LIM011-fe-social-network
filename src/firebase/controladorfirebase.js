@@ -40,10 +40,18 @@ export const getDataUser = (user) => {
   
 }
 
+export const currentUser = () => firebase.auth().currentUser;
+
 export const postUser = (textarea) => {
 return firebase.firestore().collection("publicaciones").add({
-  contenido: textarea
+  contenido: textarea,
+  uid: currentUser().uid,
+  name: currentUser().displayName,
+  email: currentUser().email,
+  date: new Date(),
 })}
+
+
 
 export const showPost = () => {
 return firebase.firestore().collection("publicaciones")
