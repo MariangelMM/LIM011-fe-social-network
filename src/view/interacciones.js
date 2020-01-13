@@ -1,6 +1,5 @@
 
 import { outUser, postUser, showPost, DeletePost, editPost } from '../firebase/controladorfirebase.js'
-
 export const INTERACCIONES = (user, posts) => {
   const viewCatalogo = ` 
    <body>
@@ -15,7 +14,7 @@ export const INTERACCIONES = (user, posts) => {
      
      <main class="publicaciones">
           <section class="seccion-perfil">
-            <img class="portada" src="${user.photoUrl}" alt="foto de portada">
+            <img class="portada" src="../imagenes/bannerloguito.png" alt="foto de portada">
             <div class="info-user">
                <img id="fotoPerfil" class="foto-perfil" src="${user.photoUrl}" alt="foto de perfil">
                <p class="fondo" id="nombreUsuarioDestok" >${user.name}</p>
@@ -53,7 +52,6 @@ export const INTERACCIONES = (user, posts) => {
   });
   // LISTAR PUBLICACIONES 
   const publicPost = divElement.querySelector('#publicPost');
-
   showPost().onSnapshot((querySnapshot) => {
     publicPost.innerHTML = '';
     querySnapshot.forEach((doc) => {
@@ -62,7 +60,7 @@ export const INTERACCIONES = (user, posts) => {
       containerPost.innerHTML = ` 
        <section class="form">
            <div class="cabecera-post">
-             <p class="user-post">Publicado por </p>
+             <p class="user-post">Publicado por ${doc.data().name}   ${doc.data().fecha} </p>
              <span id="btn-delete-${doc.id}"><img class="btn-eliminar" src="./imagenes/eliminar.png"></span>
            </div>
            <div id="contPostOriginal">
