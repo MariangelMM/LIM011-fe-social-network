@@ -41,10 +41,30 @@ export const getDataUser = (user) => {
   return firebase.firestore().collection('usuarios').doc(user.uid).get();
   
 }
-// funcion para postear
+
+export const currentUser = () => firebase.auth().currentUser;
+
+export const fecha = (fecha) => {
+  const date = {
+  day : fecha.getDate(),
+  month : fecha.getMonth() +1,
+  year : fecha.getFullYear(),
+  hours : fecha.getHours(),
+  minutes : fecha.getMinutes(),
+  }
+ // console.log(date);
+  return date;
+ 
+}
+
 export const postUser = (textarea) => {
 return firebase.firestore().collection("publicaciones").add({
-  contenido: textarea
+  contenido: textarea,
+  uid: currentUser().uid,
+  name: currentUser().displayName,
+  email: currentUser().email,
+  date: new Date(),
+  fecha : `${fecha(new Date()).day}/${fecha(new Date()).month}/${fecha(new Date()).year} a las ${fecha(new Date()).hours}:${fecha(new Date()).minutes}`,
 })}
 
 

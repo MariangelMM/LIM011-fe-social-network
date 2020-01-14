@@ -1,37 +1,38 @@
 
 import { outUser, postUser, showPost, DeletePost, editPost } from '../firebase/controladorfirebase.js'
-
 export const INTERACCIONES = (user, posts) => {
-  const viewCatalogo = ` 
-  <header>
-    <nav>
-      <span id="nombreUsuario">${user.name}</span>
-      <p>FOOD BOOK</p>
-      <menu id="cerrarSesion">Cerrar sesión</i>
-    </nav>
-  </header>
+    const viewCatalogo = ` 
+   <body>
+     <header>
+       <nav>
+        <span id="nombreUsuario">${user.name}</span>
+        <p>FOOD BOOK</p>
+        <menu id="cerrarSesion">Cerrar sesión</i>
+       </nav>
+     </header>
   
-  <div class="body">
-    <div class="profile-section">
-      <img class="cover-page" src="./imagenes/bannerloguito.png" alt="foto de portada">
-      <div class="info-user">
-        <img id="fotoPerfil" class="avatar" src="${user.photoUrl}" alt="foto de perfil">
-        <div>
-          <p id="nombreUsuarioDestok" class="name-user">${user.name}</p>
-        </div>
-      </div>
-    </div>
-    <div class="publications-section">
-      <form class="form">
-        <textarea class="message-post" id="texto" placeholder="¿Qué quieres compartir?" cols="30" rows="4"></textarea>
-        <div class="buttons">
-          <button class="btn-post" id="compartir">Compartir</button>
-         </div>
-      </form>
-      <div id="publicPost" >
-      </div>
-    </div>
-  </div> `;
+     
+     <main class="publicaciones">
+          <section class="seccion-perfil">
+            <img class="portada" src="../imagenes/bannerloguito.png" alt="foto de portada">
+            <div class="info-user">
+               <img id="fotoPerfil" class="foto-perfil" src="${user.photoUrl}" alt="foto de perfil">
+               <p class="fondo" id="nombreUsuarioDestok" >${user.name}</p>
+            </div>
+          </section>
+    
+          <section class="seccion-publicacion">
+            <form class="form">
+              <textarea class="mensaje" id="texto" placeholder="¿Qué quieres compartir?" cols="30" rows="4"></textarea>
+              <div class="btn-enviar">
+                <button class="btn-compartir" id="compartir">Compartir</button>
+              </div>
+            </form>
+          <div id="publicPost" >
+          </div>
+          </section>
+     </main>
+  </body> `;
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
@@ -51,30 +52,26 @@ export const INTERACCIONES = (user, posts) => {
   });
   // LISTAR PUBLICACIONES 
   const publicPost = divElement.querySelector('#publicPost');
-
   showPost().onSnapshot((querySnapshot) => {
     publicPost.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const containerPost = document.createElement('div');
       containerPost.classList.add('post');
-      containerPost.innerHTML = `
-
-
-                
-                <div class="form">
-                <button class="btn-borrar" id="btn-delete-${doc.id}">X</button>
-                <p class="message-public">Publicado por </p>
-                <div id="contPostOriginal">
-                  <p id="post" class="message-public">${doc.data().contenido}</p>
-                  <button id="btn-update-${doc.id}">EDITAR</button>
-                  
-                  
-                </div>
-                  <div id='contenedorEditar' class='hide'>
-                  <textarea id='postEditar'  cols="30" rows="10"></textarea>
-                  <button id="btn-update-save-${doc.id}" >GUARDAR</button>
-                  </div>
-                  </div>
+      containerPost.innerHTML = ` 
+       <section class="form">
+           <div class="cabecera-post">
+             <p class="user-post">Publicado por ${doc.data().name}   ${doc.data().fecha} </p>
+             <span id="btn-delete-${doc.id}"><img class="btn-eliminar" src="./imagenes/eliminar.png"></span>
+           </div>
+           <div id="contPostOriginal">
+             <p id="post" class="message-public">${doc.data().contenido}</p>
+           </div>
+           <span id="btn-update-${doc.id}"><img class="btn-editar" src="./imagenes/editar.png"></span>
+           <div id='contenedorEditar' class='hide'>
+             <textarea id='postEditar'  cols="30" rows="10"></textarea>
+             <span id="btn-update-save-${doc.id}"><img class="btn-guardar" src="./imagenes/guardar.png"></span>
+           </div>
+       </section>
              `
       //eliminar post 
       publicPost.appendChild(containerPost)
