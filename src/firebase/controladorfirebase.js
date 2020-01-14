@@ -32,7 +32,7 @@ export const saveUsers = () => {
   firebase.firestore().collection('usuarios').doc(user.uid).set({
     name : user.displayName,
     email : user.email,
-    photoUrl : user.photoURL,
+    photoURL : user.photoURL,
     uid : user.uid
   })
 };
@@ -41,8 +41,6 @@ export const getDataUser = (user) => {
   return firebase.firestore().collection('usuarios').doc(user.uid).get();
   
 }
-
-export const currentUser = () => firebase.auth().currentUser;
 
 export const fecha = (fecha) => {
   const date = {

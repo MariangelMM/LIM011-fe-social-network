@@ -15,32 +15,33 @@ export const REGISTRO = () => {
    const divElem = document.createElement('div');
    divElem.innerHTML = viewRegistro;
 
-   const createUser = () => {
-     
+   const createUser = (e) => {
+     e.preventDefault();
    const name = divElem.querySelector('#name').value;
     const lastName = divElem.querySelector('#lastName').value;
     const email = divElem.querySelector('#email').value;
     const password = divElem.querySelector('#password').value;
     const nameCompleteUser = name + ' ' + lastName;
     
-    if ( email != null && password != null) {
+    if ( email !== '' && password !== '') {
       registrarUsuario(email, password)
       .then((result) =>{
         const uidUser = result.user.uid;
         const dataUser = {
-          displayName: nameCompleteUser,
+          name: nameCompleteUser,
           photoURL: './imagenes/userXimage.png',
           email: result.user.email
         };
-        coleccionRegisterUser('dataUserRegister', uidUser, dataUser);
+        //promesas sin atender
+        coleccionRegisterUser('usuarios', uidUser, dataUser);
         console.log(coleccionRegisterUser())
         
       })
       }
-      return createUser;
+    
     }
   
-  divElem.querySelector('#btn_registrar').addEventListener('click' , createUser() );
+  divElem.querySelector('#btn_registrar').addEventListener('click' , createUser );
   
   
   return divElem;

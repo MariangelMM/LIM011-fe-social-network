@@ -1,6 +1,6 @@
 
 import { outUser, postUser, showPost, DeletePost, editPost } from '../firebase/controladorfirebase.js'
-export const INTERACCIONES = (user, posts) => {
+export const INTERACCIONES = (user) => {
     const viewCatalogo = ` 
    <body>
      <header>
@@ -16,7 +16,7 @@ export const INTERACCIONES = (user, posts) => {
           <section class="seccion-perfil">
             <img class="portada" src="../imagenes/bannerloguito.png" alt="foto de portada">
             <div class="info-user">
-               <img id="fotoPerfil" class="foto-perfil" src="${user.photoUrl}" alt="foto de perfil">
+               <img id="fotoPerfil" class="foto-perfil" src="${user.photoURL}" alt="foto de perfil">
                <p class="fondo" id="nombreUsuarioDestok" >${user.name}</p>
             </div>
           </section>
