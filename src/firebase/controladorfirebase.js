@@ -39,7 +39,6 @@ export const saveUsers = () => {
 
 export const getDataUser = (user) => {
   return firebase.firestore().collection('usuarios').doc(user.uid).get();
-  
 }
 
 export const fecha = (fecha) => {
@@ -55,9 +54,10 @@ export const fecha = (fecha) => {
  
 }
 
-export const postUser = (textarea) => {
+export const postUser = (textarea, tipopost) => {
 return firebase.firestore().collection("publicaciones").add({
   contenido: textarea,
+  tipo : tipopost,
   uid: currentUser().uid,
   name: currentUser().displayName,
   email: currentUser().email,

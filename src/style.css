@@ -233,6 +233,19 @@ header nav{
     cursor: pointer;
 }
 
+.btn-tipopost {
+    text-align: end;
+    background-color:  #23b574;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    color: black;
+    font-size: 0.85rem;
+    width: 82px;
+    height: 30px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+}
 .cabecera-post{  
     display: flex;
     justify-content: space-between;
