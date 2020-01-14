@@ -27,6 +27,10 @@ export const INTERACCIONES = (user, posts) => {
               <div class="btn-enviar">
                 <button class="btn-compartir" id="compartir">Compartir</button>
               </div>
+               <select class="btn-tipopost" id="tipoPost">
+                 <option value='publico'>Público</option>
+                 <option value='privado'>Privado</option>
+               </select>
             </form>
           <div id="publicPost" >
           </div>
@@ -42,8 +46,8 @@ export const INTERACCIONES = (user, posts) => {
   publicar.addEventListener('click', (e) => {
     e.preventDefault()
     const textarea = divElement.querySelector('#texto').value;
-
-    postUser(textarea).then(function (docRef) {
+    const tipoPost = divElement.querySelector('#tipoPost').value;
+    postUser(textarea, tipoPost).then(function (docRef) {
       divElement.querySelector('#texto').value = '';
     })
       .catch(function (error) {
