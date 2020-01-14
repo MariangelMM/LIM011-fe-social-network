@@ -1,7 +1,7 @@
 
 import { outUser, postUser, showPost, DeletePost, editPost } from '../firebase/controladorfirebase.js'
 export const INTERACCIONES = (user, posts) => {
-  const viewCatalogo = ` 
+    const viewCatalogo = ` 
    <body>
      <header>
        <nav>
