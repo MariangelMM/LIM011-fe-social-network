@@ -12,17 +12,18 @@ export const REGISTRO = () => {
       </form>
       <button class="boton verde" type="submit" id="btn_registrar" >REGISTRAR</button>
    </div>`
+   const divElem = document.createElement('div');
+   divElem.innerHTML = viewRegistro;
 
    const createUser = () => {
-    const divElem = document.createElement('div');
-    divElem.innerHTML = viewRegistro;
-    const name = document.getElementById('name').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+     
+   const name = divElem.querySelector('#name').value;
+    const lastName = divElem.querySelector('#lastName').value;
+    const email = divElem.querySelector('#email').value;
+    const password = divElem.querySelector('#password').value;
     const nameCompleteUser = name + ' ' + lastName;
     
-    if ( email !== '' && password !== '') {
+    if ( email != null && password != null) {
       registrarUsuario(email, password)
       .then((result) =>{
         const uidUser = result.user.uid;
@@ -33,40 +34,16 @@ export const REGISTRO = () => {
         };
         coleccionRegisterUser('dataUserRegister', uidUser, dataUser);
         console.log(coleccionRegisterUser())
+        
       })
       }
+      return createUser;
     }
   
-  divElem.querySelector('#btn_registrar').addEventListener('click', createUser() );
+  divElem.querySelector('#btn_registrar').addEventListener('click' , createUser() );
+  
   
   return divElem;
 }
   
-  /* () => {
-
-    registrarUsuario(email, password)
-      .then(function () {
-        
-        document.getElementById('name').value = '';
-        document.getElementById('lastName').value = '';
-        document.getElementById('email').value = ''; 
-        document.getElementById('password').value = '';
-        const url = window.location.href;
-        const nuevaUrl = url.replace(/registro/, 'interacciones');
-        console.log(nuevaUrl);
-        window.location.href = nuevaUrl;
-      })
-      .then(function () {
-        saveUsers();
-      })
-      .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        alert('Debes ingresar un correo electrónico válido' + '\n La contraseña debe tener al menos 6 caracteres')
-      });
- 
-
-  
-}); */
-
  

@@ -65,6 +65,7 @@ export const editPost = (id, contenido) => {
 //coleccion de registro de usuarios
 
 export const coleccionRegisterUser = (nameCollection, id, dataUserRegister) => {
-  firebase.firestore().collection(nameCollection).doc(id).set(dataUserRegister);
+   const coleccion = firebase.firestore().collection(nameCollection).doc(id).set(dataUserRegister);
+  return coleccion;
 
 }
