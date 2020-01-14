@@ -59,7 +59,7 @@ export const postUser = (textarea) => {
 return firebase.firestore().collection("publicaciones").add({
   contenido: textarea,
   uid: currentUser().uid,
-  name: currentUser().displayName,
+  name: currentUser().name,
   email: currentUser().email,
   date: new Date(),
   fecha : `${fecha(new Date()).day}/${fecha(new Date()).month}/${fecha(new Date()).year} a las ${fecha(new Date()).hours}:${fecha(new Date()).minutes}`,
