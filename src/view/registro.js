@@ -1,4 +1,4 @@
-import { registrarUsuario , saveUsers ,coleccionRegisterUser} from '../firebase/controladorfirebase.js'
+import { registrarUsuario, coleccionRegisterUser } from '../firebase/controladorfirebase.js';
 
 export const REGISTRO = () => {
   const viewRegistro = `
@@ -11,40 +11,35 @@ export const REGISTRO = () => {
         <input class="inputs flex" id="password" placeholder="Contraseña Nueva" type="password">
         <button class="boton" type="submit" id="btn_registrar" >REGISTRAR</button>
       </form>
-   </div>`
-   const divElem = document.createElement('div');
-   divElem.innerHTML = viewRegistro;
+   </div>`;
+  const divElem = document.createElement('div');
+  divElem.innerHTML = viewRegistro;
 
-   const createUser = (e) => {
-     e.preventDefault();
-   const name = divElem.querySelector('#name').value;
+  const createUser = (e) => {
+    e.preventDefault();
+    const name = divElem.querySelector('#name').value;
     const lastName = divElem.querySelector('#lastName').value;
     const email = divElem.querySelector('#email').value;
     const password = divElem.querySelector('#password').value;
-    const nameCompleteUser = name + ' ' + lastName;
-    
-    if ( email !== '' && password !== '') {
+    const nameCompleteUser = `${name} + ' ' +${lastName}`;
+
+    if (email !== '' && password !== '') {
       registrarUsuario(email, password)
-      .then((result) =>{
-        const uidUser = result.user.uid;
-        const dataUser = {
-          name: nameCompleteUser,
-          photoURL: './imagenes/userXimage.png',
-          email: result.user.email
-        };
-        //promesas sin atender
-        coleccionRegisterUser('usuarios', uidUser, dataUser);
-        console.log(coleccionRegisterUser())
-        
-      })
-      }
-    
+        .then((result) => {
+          const uidUser = result.user.uid;
+          const dataUser = {
+            name: nameCompleteUser,
+            photoURL: './imagenes/userXimage.png',
+            email: result.user.email,
+          };
+          // promesas sin atender
+          coleccionRegisterUser('usuarios', uidUser, dataUser);
+        });
     }
-  
-  divElem.querySelector('#btn_registrar').addEventListener('click' , createUser );
-  
-  
+  };
+
+  divElem.querySelector('#btn_registrar').addEventListener('click', createUser);
+
+
   return divElem;
-}
-  
- 
+};
