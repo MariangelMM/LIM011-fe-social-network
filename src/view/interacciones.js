@@ -1,7 +1,7 @@
 
 import { outUser, postUser, showPost, DeletePost, editPost } from '../firebase/controladorfirebase.js'
-export const INTERACCIONES = (user, posts) => {
-    const viewCatalogo = ` 
+export const INTERACCIONES = (user) => {
+  const viewCatalogo = ` 
    <body>
      <header>
        <nav>
@@ -16,7 +16,7 @@ export const INTERACCIONES = (user, posts) => {
           <section class="seccion-perfil">
             <img class="portada" src="../imagenes/bannerloguito.png" alt="foto de portada">
             <div class="info-user">
-               <img id="fotoPerfil" class="foto-perfil" src="${user.photoUrl}" alt="foto de perfil">
+               <img id="fotoPerfil" class="foto-perfil" src="${user.photoURL}" alt="foto de perfil">
                <p class="fondo" id="nombreUsuarioDestok" >${user.name}</p>
             </div>
           </section>
@@ -41,14 +41,14 @@ export const INTERACCIONES = (user, posts) => {
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
 
-  // PUBLICAR 
+  // PUBLICAR
   const publicar = divElement.querySelector('#compartir');
   publicar.addEventListener('click', (e) => {
     e.preventDefault()
-    const textarea = divElement.querySelector('#texto').value;
+        const textarea = divElement.querySelector('#texto').value;
     const tipoPost = divElement.querySelector('#tipoPost').value;
     postUser(textarea, tipoPost).then(function (docRef) {
-      divElement.querySelector('#texto').value = '';
+    divElement.querySelector('#texto').value = '';
     })
       .catch(function (error) {
         console.error("Error: ", error);
@@ -91,23 +91,23 @@ export const INTERACCIONES = (user, posts) => {
       const contEditar = containerPost.querySelector('#contenedorEditar');
       const editar = containerPost.querySelector(`#btn-update-${doc.id}`);
 
-      editar.addEventListener('click', (e)=> {
+      editar.addEventListener('click', (e) => {
         e.preventDefault();
         contPostOriginal.classList.add('hide');
         contEditar.classList.remove('hide');
-       containerPost.querySelector('#postEditar').value = doc.data().contenido 
+        containerPost.querySelector('#postEditar').value = doc.data().contenido
 
-        
-      const guardar = containerPost.querySelector(`#btn-update-save-${doc.id}`);
 
-      guardar.addEventListener('click', (e) => {
-        e.preventDefault();
-          const textoEditado = containerPost.querySelector('#postEditar').value; 
+        const guardar = containerPost.querySelector(`#btn-update-save-${doc.id}`);
+
+        guardar.addEventListener('click', (e) => {
+          e.preventDefault();
+          const textoEditado = containerPost.querySelector('#postEditar').value;
           console.log(textoEditado);
-          
-        editPost(doc.id, textoEditado);
+
+          editPost(doc.id, textoEditado);
+        })
       })
-        }) 
 
 
     })
