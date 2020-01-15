@@ -1,5 +1,7 @@
+import {
+  outUser, postUser, showPost, DeletePost, editPost,
+} from '../firebase/controladorfirebase.js';
 
-import { outUser, postUser, showPost, DeletePost, editPost } from '../firebase/controladorfirebase.js'
 export const INTERACCIONES = (user) => {
   const viewCatalogo = ` 
    <body>
@@ -44,17 +46,16 @@ export const INTERACCIONES = (user) => {
   // PUBLICAR
   const publicar = divElement.querySelector('#compartir');
   publicar.addEventListener('click', (e) => {
-    e.preventDefault()
-        const textarea = divElement.querySelector('#texto').value;
+    e.preventDefault();
+    const textarea = divElement.querySelector('#texto').value;
     const tipoPost = divElement.querySelector('#tipoPost').value;
-    postUser(textarea, tipoPost).then(function (docRef) {
-    divElement.querySelector('#texto').value = '';
+    postUser(textarea, tipoPost).then(() => {
+      divElement.querySelector('#texto').value = '';
     })
-      .catch(function (error) {
-        console.error("Error: ", error);
+      .catch(() => {
       });
   });
-  // LISTAR PUBLICACIONES 
+  // LISTAR PUBLICACIONES
   const publicPost = divElement.querySelector('#publicPost');
   showPost().onSnapshot((querySnapshot) => {
     publicPost.innerHTML = '';
@@ -76,17 +77,16 @@ export const INTERACCIONES = (user) => {
              <span id="btn-update-save-${doc.id}"><img class="btn-guardar" src="./imagenes/guardar.png"></span>
            </div>
        </section>
-             `
-      //eliminar post 
-      publicPost.appendChild(containerPost)
+             `;
+      // eliminar post
+      publicPost.appendChild(containerPost);
 
       const eliminar = containerPost.querySelector(`#btn-delete-${doc.id}`);
       eliminar.addEventListener('click', (e) => {
         e.preventDefault();
         DeletePost(doc.id);
-
-      })
-      //EDITAR POST 
+      });
+      // EDITAR POST
       const contPostOriginal = containerPost.querySelector('#contPostOriginal');
       const contEditar = containerPost.querySelector('#contenedorEditar');
       const editar = containerPost.querySelector(`#btn-update-${doc.id}`);
@@ -95,40 +95,30 @@ export const INTERACCIONES = (user) => {
         e.preventDefault();
         contPostOriginal.classList.add('hide');
         contEditar.classList.remove('hide');
-        containerPost.querySelector('#postEditar').value = doc.data().contenido
+        containerPost.querySelector('#postEditar').value = doc.data().contenido;
 
 
         const guardar = containerPost.querySelector(`#btn-update-save-${doc.id}`);
 
-        guardar.addEventListener('click', (e) => {
+        guardar.addEventListener('click', () => {
           e.preventDefault();
           const textoEditado = containerPost.querySelector('#postEditar').value;
-          console.log(textoEditado);
 
           editPost(doc.id, textoEditado);
-        })
-      })
-
-
-    })
+        });
+      });
+    });
   });
 
-  //cerrar sesion
+  // cerrar sesion
   const outSesion = divElement.querySelector('#cerrarSesion');
   outSesion.addEventListener('click', (e) => {
     e.preventDefault();
     outUser().then(() => {
       window.location.hash = '#/';
-    })
+    });
   });
-
-
-
 
 
   return divElement;
 };
-
-
-
-

@@ -1,4 +1,3 @@
-
 import {
   logear, logInFacebook, logInGoogle, saveUsers,
 } from '../firebase/controladorfirebase.js';
@@ -11,7 +10,7 @@ export const HOME = () => {
           <p class="parrafo"> Bienvenid@ , Conéctate con tu red social preferida <br> y comparte tus conocimientos de cocina. </p>
           <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="text">
           <input class="inputs flex" id="password" placeholder="Contraseña" type="password">
-          <div id="msj-error" class="parrafo"> </div>
+          <div id='msj-error'> </div>
           <button class="boton" type="button" id="btn_ingresar">INGRESA</button>
          
           <div class="logo_redes">
@@ -30,16 +29,13 @@ export const HOME = () => {
       .then(() => {
         document.getElementById('email').value = '';
         document.getElementById('password').value = '';
-        const url = window.location.href;
         window.location.href = '#/interacciones';
-        return url;
       })
       .catch(() => {
         const msjError = document.querySelector('#msj-error');
         const errorMsj = document.createElement('div');
         errorMsj.innerHTML = `
-         <p> Debes ingresar un correo electrónico válido' + /n 'Verifique su contraseña' </p>`;
-
+        <p> 'Debes ingresar un correo electronico valido' + /n 'verifique su contraseña' </p>`;
         msjError.appendChild(errorMsj);
       });
   });
@@ -63,5 +59,6 @@ export const HOME = () => {
       saveUsers();
     });
   });
+
   return divElem;
 };

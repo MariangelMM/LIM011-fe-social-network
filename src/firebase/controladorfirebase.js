@@ -49,9 +49,8 @@ export const fecha = (fechas) => {
   return date;
 };
 
-export const postUser = (textarea, tipopost) => firebase.firestore().collection('publicaciones').add({
+export const postUser = textarea => firebase.firestore().collection('publicaciones').add({
   contenido: textarea,
-  tipo: tipopost,
   uid: currentUser().uid,
   name: currentUser().displayName,
   email: currentUser().email,
@@ -59,19 +58,15 @@ export const postUser = (textarea, tipopost) => firebase.firestore().collection(
   fecha: `${fecha(new Date()).day}/${fecha(new Date()).month}/${fecha(new Date()).year} a las ${fecha(new Date()).hours}:${fecha(new Date()).minutes}`,
 });
 
-
 export const showPost = () => firebase.firestore().collection('publicaciones');
-
 // eliminar un post
 export const DeletePost = id => firebase.firestore().collection('publicaciones').doc(id).delete();
-
 // editar un post
-export const editPost = (id, publicacion) => firebase.firestore().collection('publicaciones').doc(id).update({
-  contenido: publicacion,
+export const editPost = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update({
+  contenido,
 });
 
 // coleccion de registro de usuarios
-
 export const coleccionRegisterUser = (nameCollection, id, dataUserRegister) => {
   const coleccion = firebase.firestore().collection(nameCollection).doc(id).set(dataUserRegister);
   return coleccion;
