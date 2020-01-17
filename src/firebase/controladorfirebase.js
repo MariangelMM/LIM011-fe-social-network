@@ -20,11 +20,13 @@ export const logInFacebook = () => {
 
 // cerrar sesión
 export const outUser = () => firebase.auth().signOut();
-//
+
+
 export const currentUser = () => {
   const user = firebase.auth().currentUser;
   return user;
 };
+
 
 export const saveUsers = () => {
   const user = firebase.auth().currentUser;
