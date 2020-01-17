@@ -1,41 +1,52 @@
-import { registrar } from '../controladorfirebase.js'
+import { registrarUsuario, coleccionRegisterUser } from '../firebase/controladorfirebase.js';
 
 export const REGISTRO = () => {
   const viewRegistro = `
     <div class="registro flex">
-   <img src="./imagenes/loguito.png" alt="Logo">
-      <form class="formulario">
-            <input class="inputs flex" id="name" placeholder="Nombre" type="text">
-            <input class="inputs flex" id="surname" placeholder="Apellido" type="text">
-            <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="email"> <br>
-            <input class="inputs flex" id="password" placeholder="Contraseña Nueva" type="password">
-          </form>
-          <button class="boton verde" type="submit" id="btn_registrar" >REGISTRAR</button>
-        </div>
-
-    `
+      <form class="formulario1 flex">
+        <img class="logo1" src="./imagenes/loguito.png" alt="Logo">
+        <input class="inputs" flex" id="name" placeholder="Nombre Completo" type="text">
+        <input class="inputs" flex" id="lastName" placeholder="Apellido Completo" type="text">
+        <input class="inputs" flex" id="email" placeholder="ejemplo@hotmail.com" type="email"> 
+        <input class="inputs" flex" id="password" placeholder="Contraseña Nueva" type="password">
+        <button class="boton" type="submit" id="btn_registrar" >REGISTRAR</button>
+      </form>
+   </div>`;
   const divElem = document.createElement('div');
   divElem.innerHTML = viewRegistro;
-  divElem.querySelector('#btn_registrar').addEventListener('click', () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    registrar(email, password)
-      .then(function () {
-        document.getElementById('email').value = '';
-        document.getElementById('password').value = '';
-        const url = window.location.href;
-        const nuevaUrl = url.replace(/registro/, 'interacciones');
-        console.log(nuevaUrl);
-        window.location.href = nuevaUrl;
-      })
-      .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        alert('Debes ingresar un correo electrónico válido' + '\n La contraseña debe tener al menos 6 caracteres')
-      });
 
-  });
+  const createUser = (e) => {
+    e.preventDefault();
+    const name = divElem.querySelector('#name ').value;
+    const lastName = divElem.querySelector('#lastName').value;
+    const email = divElem.querySelector('#email').value;
+    const password = divElem.querySelector('#password').value;
+    const nameCompleteUser = `${name} ${lastName}`;
+
+    if (email !== '' && password !== '') {
+      registrarUsuario(email, password)
+        .then((result) => {
+          const uidUser = result.user.uid;
+          const dataUser = {
+            name: nameCompleteUser,
+            photoURL: './imagenes/userXimage.png',
+            email: result.user.email,
+          };
+          // promesas sin atender
+          coleccionRegisterUser('usuarios', uidUser, dataUser).then(() => {
+            const user = firebase.auth().currentUser;
+            user.updateProfile({
+              displayName: name,
+            }).then(() => {
+            // Update successful.
+            });
+          });
+        });
+    }
+  };
+
+  divElem.querySelector('#btn_registrar').addEventListener('click', createUser);
+
+
   return divElem;
-}
-
-
+};
