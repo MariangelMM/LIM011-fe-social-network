@@ -38,9 +38,6 @@ export const HOME = () => {
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
         switch (errorCode) {
           case 'auth/invalid-email':
             mensajeError.innerHTML = `
@@ -58,7 +55,7 @@ export const HOME = () => {
             break;
 
 
-          default: console.log('algo salio mal');
+          default:
             break;
         }
       });
