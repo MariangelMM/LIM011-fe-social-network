@@ -1,5 +1,5 @@
 import {
-  outUser, postUser, showPost, DeletePost, editPost,
+  outUser, postUser, showPost, DeletePost, editPost, currentUser,
 } from '../firebase/controladorfirebase.js';
 
 export const INTERACCIONES = (user) => {
@@ -49,7 +49,8 @@ export const INTERACCIONES = (user) => {
     e.preventDefault();
     const textarea = divElement.querySelector('#texto').value;
     const tipoPost = divElement.querySelector('#tipoPost').value;
-    postUser(textarea, tipoPost).then(() => {
+    const datausuario = currentUser();
+    postUser(textarea, tipoPost, datausuario).then(() => {
       divElement.querySelector('#texto').value = '';
     })
       .catch(() => {
