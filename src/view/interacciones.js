@@ -60,6 +60,8 @@ export const INTERACCIONES = (user) => {
   showPost().onSnapshot((querySnapshot) => {
     publicPost.innerHTML = '';
     querySnapshot.forEach((doc) => {
+     
+
       const containerPost = document.createElement('div');
       containerPost.classList.add('post');
       containerPost.innerHTML = ` 
@@ -78,6 +80,7 @@ export const INTERACCIONES = (user) => {
            </div>
        </section>
              `;
+      
       // eliminar post
       publicPost.appendChild(containerPost);
 
