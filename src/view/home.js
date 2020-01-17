@@ -13,7 +13,8 @@ export const HOME = () => {
           <div id='msj-error'>
           <p id='conten-error' class='mensajeerror' > </p> </div>
           <button class="boton" type="button" id="btn_ingresar">INGRESA</button>
-      <div class="logo_redes">
+         
+          <div class="logo_redes">
           <input id="facebook" type=image src="./imagenes/facebook.svg">
           <input id="google" type=image src="./imagenes/google.svg">
       </div>
@@ -63,7 +64,6 @@ export const HOME = () => {
       });
   });
 
-
   // click google
   divElem.querySelector('#google').addEventListener('click', (e) => {
     e.preventDefault();
@@ -83,7 +83,6 @@ export const HOME = () => {
       saveUsers();
     });
   });
-
 
   return divElem;
 };

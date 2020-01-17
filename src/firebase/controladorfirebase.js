@@ -13,7 +13,6 @@ export const logInGoogle = () => {
 };
 
 // login con Facebook
-
 export const logInFacebook = () => {
   const facebook = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(facebook);
@@ -22,7 +21,10 @@ export const logInFacebook = () => {
 // cerrar sesión
 export const outUser = () => firebase.auth().signOut();
 //
-export const currentUser = () => firebase.auth().currentUser;
+export const currentUser = () => {
+  const user = firebase.auth().currentUser;
+  return user;
+};
 
 export const saveUsers = () => {
   const user = firebase.auth().currentUser;
@@ -60,7 +62,6 @@ export const postUser = (textarea, tipopost) => firebase.firestore().collection(
   fecha: `${fecha(new Date()).day}/${fecha(new Date()).month}/${fecha(new Date()).year} a las ${fecha(new Date()).hours}:${fecha(new Date()).minutes}`,
 });
 
-
 export const showPost = () => firebase.firestore().collection('publicaciones');
 // eliminar un post
 export const DeletePost = id => firebase.firestore().collection('publicaciones').doc(id).delete();
@@ -70,7 +71,6 @@ export const editPost = (id, contenido) => firebase.firestore().collection('publ
 });
 
 // coleccion de registro de usuarios
-
 export const coleccionRegisterUser = (nameCollection, id, dataUserRegister) => {
   const coleccion = firebase.firestore().collection(nameCollection).doc(id).set(dataUserRegister);
   return coleccion;
