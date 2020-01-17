@@ -78,6 +78,7 @@ export const INTERACCIONES = (user) => {
            </div>
        </section>
              `;
+
       // eliminar post
       publicPost.appendChild(containerPost);
 

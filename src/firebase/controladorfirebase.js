@@ -54,7 +54,7 @@ export const fecha = (fechas) => {
 
 export const postUser = (textarea, tipopost) => firebase.firestore().collection('publicaciones').add({
   contenido: textarea,
-  tipopos: tipopost,
+  tipo: tipopost,
   uid: currentUser().uid,
   name: currentUser().displayName,
   email: currentUser().email,

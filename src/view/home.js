@@ -10,7 +10,8 @@ export const HOME = () => {
           <p class="parrafo"> Bienvenid@ , Conéctate con tu red social preferida <br> y comparte tus conocimientos de cocina. </p>
           <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="text">
           <input class="inputs flex" id="password" placeholder="Contraseña" type="password">
-          <div id='msj-error'> </div>
+          <div id='msj-error'>
+          <p id='conten-error' class='mensajeerror' > </p> </div>
           <button class="boton" type="button" id="btn_ingresar">INGRESA</button>
          
           <div class="logo_redes">
@@ -22,21 +23,44 @@ export const HOME = () => {
     </main> `;
   const divElem = document.createElement('div');
   divElem.innerHTML = viewHome;
+
   divElem.querySelector('#btn_ingresar').addEventListener('click', () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const mensajeError = document.getElementById('conten-error');
     logear(email, password)
       .then(() => {
         document.getElementById('email').value = '';
         document.getElementById('password').value = '';
+
         window.location.href = '#/interacciones';
       })
-      .catch(() => {
-        const msjError = document.querySelector('#msj-error');
-        const errorMsj = document.createElement('div');
-        errorMsj.innerHTML = `
-        <p> 'Debes ingresar un correo electronico valido' + /n 'verifique su contraseña' </p>`;
-        msjError.appendChild(errorMsj);
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        switch (errorCode) {
+          case 'auth/invalid-email':
+            mensajeError.innerHTML = `
+         Debes ingresar un correo electronico valido`;
+
+            break;
+          case 'auth/wrong-password':
+            mensajeError.innerHTML = `
+        La contraseña no es válida o el usuario no tiene una contraseña`;
+            break;
+          case 'auth/user-not-found':
+            mensajeError.innerHTML = `
+        No hay registro de usuario correspondiente a este identificador. El usuario puede haber sido eliminado`;
+
+            break;
+
+
+          default: console.log('algo salio mal');
+            break;
+        }
       });
   });
 
