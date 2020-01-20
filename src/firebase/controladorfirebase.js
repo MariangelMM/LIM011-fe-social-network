@@ -20,11 +20,9 @@ export const logInFacebook = () => {
 
 // cerrar sesión
 export const outUser = () => firebase.auth().signOut();
-//
-export const currentUser = () => {
-  const user = firebase.auth().currentUser;
-  return user;
-};
+
+export const currentUser = () => firebase.auth().currentUser;
+
 
 export const saveUsers = () => {
   const user = firebase.auth().currentUser;
@@ -52,12 +50,12 @@ export const fecha = (fechas) => {
   return date;
 };
 
-export const postUser = (textarea, tipopost) => firebase.firestore().collection('publicaciones').add({
+export const postUser = (textarea, tipopost, datausuario) => firebase.firestore().collection('publicaciones').add({
   contenido: textarea,
   tipo: tipopost,
-  uid: currentUser().uid,
-  name: currentUser().displayName,
-  email: currentUser().email,
+  uid: datausuario.uid,
+  name: datausuario.displayName,
+  email: datausuario.email,
   date: new Date(),
   fecha: `${fecha(new Date()).day}/${fecha(new Date()).month}/${fecha(new Date()).year} a las ${fecha(new Date()).hours}:${fecha(new Date()).minutes}`,
 });
