@@ -57,20 +57,19 @@ export const INTERACCIONES = (user) => {
   });
   // LISTAR PUBLICACIONES
   const publicPost = divElement.querySelector('#publicPost');
-
-  /* showPost().onSnapshot((querySnapshot) => {
+  const fnParaConsolearLaData = (data) => {
     publicPost.innerHTML = '';
-    querySnapshot.forEach((doc) => {
+    data.forEach((doc) => {
       const containerPost = document.createElement('div');
       containerPost.classList.add('post');
-      containerPost.innerHTML = ` 
+      containerPost.innerHTML = `
        <section class="form">
            <div class="cabecera-post">
-             <p class="user-post">Publicado por ${doc.data().name}   ${doc.data().fecha} </p>
+             <p class="user-post">Publicado por ${doc.name}   ${doc.fecha} </p>
              <span id="btn-delete-${doc.id}"><img class="btn-eliminar" src="./imagenes/eliminar.png"></span>
            </div>
            <div id="contPostOriginal">
-             <p id="post" class="message-public">${doc.data().contenido}</p>
+             <p id="post" class="message-public">${doc.contenido}</p>
            </div>
            <span id="btn-update-${doc.id}"><img class="btn-editar" src="./imagenes/editar.png"></span>
            <div id='contenedorEditar' class='hide'>
@@ -97,7 +96,7 @@ export const INTERACCIONES = (user) => {
         e.preventDefault();
         contPostOriginal.classList.add('hide');
         contEditar.classList.remove('hide');
-        containerPost.querySelector('#postEditar').value = doc.data().contenido;
+        containerPost.querySelector('#postEditar').value = doc.contenido;
 
 
         const guardar = containerPost.querySelector(`#btn-update-save-${doc.id}`);
@@ -110,8 +109,9 @@ export const INTERACCIONES = (user) => {
         });
       });
     });
-  });
- */
+  };
+  showPost(fnParaConsolearLaData);
+
   // cerrar sesion
   const outSesion = divElement.querySelector('#cerrarSesion');
   outSesion.addEventListener('click', (e) => {

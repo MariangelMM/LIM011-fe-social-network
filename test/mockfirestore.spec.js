@@ -1,7 +1,7 @@
 import MockFirebase from 'mock-cloud-firestore';
 
 
-import { postUser, showPost } from '../src/firebase/controladorfirebase';
+import { postUser, DeletePost, showPost } from '../src/firebase/controladorfirebase';
 
 const fixtureData = {
   collection: {
@@ -24,7 +24,7 @@ const fixtureData = {
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 const objectpost = {
-  post: 'probando mocks',
+  post: 'probando mocks2',
 
 };
 const tipopost = {
@@ -37,15 +37,26 @@ const datausuario = {
   email: 'sulca753@gmail.com',
 
 };
+
 describe('postUser', () => {
+  it('debería ser una función', () => {
+    expect(typeof postUser).toBe('function');
+  });
   it('Debería poder agregar una nota', () => postUser(objectpost, tipopost, datausuario).then((data) => {
     // eslint-disable-next-line no-underscore-dangle
-    expect(data._data.contenido.post).toBe('probando mocks');
+    expect(data._data.contenido.post).toBe('probando mocks2');
   }));
 });
 
-describe('showPost', () => {
-  it('deberia retornar los post', () => showPost(() => {
-    expect();
-  }));
+describe('DeletePost', () => {
+  it('deberia ser una función', () => {
+    expect(typeof DeletePost).toBe('function');
+  });
+  it('Deberia poder eliminar una nota con el id post001', done => DeletePost('post001').then(() => showPost(
+    (data) => {
+      const result = data.find(note => note.id === 'post001');
+      expect(result).toBe(undefined);
+      done();
+    },
+  )));
 });
