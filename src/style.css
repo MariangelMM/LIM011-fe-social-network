@@ -56,6 +56,11 @@
     background-color: #23b574;
     cursor: pointer;
 }
+.boton:hover{
+    background-color: rgb(111, 204, 19);
+    text-decoration: none;
+    cursor: pointer;
+}
 .formulario .logo_redes input{
     width: 3em;
     height: auto;
@@ -162,6 +167,18 @@ nav{
 }
 header nav{
     display: flex;
+}
+#cerrarSesion{
+    cursor: pointer;
+}
+ /* MENSAJES DE ERROR*/
+ .mensajeerror{
+    color: crimson;
+    text-align: center;
+    font-size: smaller;
+    font-style: italic;
+    font-weight: bold;
+
 }
 .publicaciones{
     display: flex;
