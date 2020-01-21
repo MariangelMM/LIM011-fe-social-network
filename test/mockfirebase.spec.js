@@ -1,6 +1,6 @@
 
 import {
-  registrarUsuario, logear, logInGoogle, logInFacebook, outUser,
+  registrarUsuario, logear, logInGoogle, logInFacebook, outUser, coleccionRegisterUser,
 } from '../src/firebase/controladorfirebase.js';
 
 // configurando firebase mock
@@ -17,6 +17,15 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockauth,
   () => mockfirestore,
 );
+
+const userid = {
+  uid: 'user002',
+};
+
+const datausuario = {
+  displayName: 'mariangel mora',
+  email: 'mariangelmora@gmail.com',
+};
 
 describe('registrarUsuario', () => {
   it('debería ser una función', () => {
@@ -67,4 +76,16 @@ describe('outUser', () => {
     .then(() => {
       expect('cerrar sesion').toBe('cerrar sesion');
     }));
+});
+
+
+describe('coleccionRegisterUser', () => {
+  it('debería ser una función', () => {
+    expect(typeof coleccionRegisterUser).toBe('function');
+  });
+  it('Deberia poder crear una coleccion nueva de usuario', () => {
+    coleccionRegisterUser('usuarios', userid, datausuario).then((data) => {
+      expect(data.email).toBe('mariangelmora@gmail.com');
+    });
+  });
 });

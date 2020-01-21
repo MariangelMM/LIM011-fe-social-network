@@ -60,17 +60,22 @@ export const postUser = (textarea, tipopost, datausuario) => firebase.firestore(
   fecha: `${fecha(new Date()).day}/${fecha(new Date()).month}/${fecha(new Date()).year} a las ${fecha(new Date()).hours}:${fecha(new Date()).minutes}`,
 });
 
-export const showPost = funcionQueRecibeLaData => firebase.firestore().collection('publicaciones')
-  .onSnapshot((querySnapshot) => {
-    const data = [];
-    querySnapshot.forEach((doc) => {
-      data.push({ id: doc.id, ...doc.data() });
+export const showPost = (funcionQueRecibeLaData) => {
+  const result = firebase.firestore().collection('publicaciones')
+    .onSnapshot((querySnapshot) => {
+      const data = [];
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() });
+      });
+      funcionQueRecibeLaData(data);
     });
-    funcionQueRecibeLaData(data);
-  });
+  return result;
+};
 
 // eliminar un post
 export const DeletePost = id => firebase.firestore().collection('publicaciones').doc(id).delete();
+
+
 // editar un post
 export const editPost = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update({
   contenido,
