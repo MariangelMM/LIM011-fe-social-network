@@ -75,7 +75,6 @@ export const showPost = (funcionQueRecibeLaData) => {
 // eliminar un post
 export const DeletePost = id => firebase.firestore().collection('publicaciones').doc(id).delete();
 
-
 // editar un post
 export const editPost = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update({
   contenido,
