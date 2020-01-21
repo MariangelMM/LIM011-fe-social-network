@@ -57,7 +57,8 @@ export const INTERACCIONES = (user) => {
   });
   // LISTAR PUBLICACIONES
   const publicPost = divElement.querySelector('#publicPost');
-  showPost().onSnapshot((querySnapshot) => {
+
+  /* showPost().onSnapshot((querySnapshot) => {
     publicPost.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const containerPost = document.createElement('div');
@@ -110,7 +111,7 @@ export const INTERACCIONES = (user) => {
       });
     });
   });
-
+ */
   // cerrar sesion
   const outSesion = divElement.querySelector('#cerrarSesion');
   outSesion.addEventListener('click', (e) => {

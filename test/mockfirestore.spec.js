@@ -46,5 +46,6 @@ describe('postUser', () => {
 
 describe('showPost', () => {
   it('deberia retornar los post', () => showPost(() => {
+    expect();
   }));
 });
