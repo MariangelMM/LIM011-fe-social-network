@@ -32,13 +32,10 @@ export const REGISTRO = () => {
             photoURL: './imagenes/userXimage.png',
             email: result.user.email,
           };
-          // promesas sin atender
           coleccionRegisterUser('usuarios', uidUser, dataUser).then(() => {
             const user = firebase.auth().currentUser;
             user.updateProfile({
               displayName: name,
-            }).then(() => {
-            // Update successful.
             });
           });
         });
