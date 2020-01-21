@@ -75,14 +75,11 @@ export const showPost = (funcionQueRecibeLaData) => {
 // eliminar un post
 export const DeletePost = id => firebase.firestore().collection('publicaciones').doc(id).delete();
 
-
-// editar un post
-export const editPost = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update({
-  contenido,
-});
-
 // coleccion de registro de usuarios
 export const coleccionRegisterUser = (nameCollection, id, dataUserRegister) => {
   const coleccion = firebase.firestore().collection(nameCollection).doc(id).set(dataUserRegister);
   return coleccion;
 };
+
+// editar un post
+export const editPost = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update(contenido);
