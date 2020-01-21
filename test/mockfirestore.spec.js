@@ -37,7 +37,11 @@ const datausuario = {
   email: 'sulca753@gmail.com',
 
 };
+
 describe('postUser', () => {
+  it('debería ser una función', () => {
+    expect(typeof postUser).toBe('function');
+  });
   it('Debería poder agregar una nota', () => postUser(objectpost, tipopost, datausuario).then((data) => {
     // eslint-disable-next-line no-underscore-dangle
     expect(data._data.contenido.post).toBe('probando mocks');
@@ -45,6 +49,15 @@ describe('postUser', () => {
 });
 
 describe('showPost', () => {
-  it('deberia retornar los post', () => showPost(() => {
+  it('debería ser una función', () => {
+    expect(typeof showPost).toBe('function');
+  });
+  it('deberia mostrar los post', () => showPost((data) => {
+    console.log(data);
+    // console.log(data.length());
+
+
+    // eslint-disable-next-line no-underscore-dangle
+    // expect(data.length).toBe(2);
   }));
 });
