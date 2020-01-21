@@ -1,22 +1,18 @@
 import MockFirebase from 'mock-cloud-firestore';
 
 
-import { postUser } from '../src/firebase/controladorfirebase';
+import { postUser, showPost } from '../src/firebase/controladorfirebase';
 
 const fixtureData = {
-  __collection__: {
-    notes: {
-      __doc__: {
-        post001: {
-          post: 'probando mocks',
-          tipo: 'publico',
-          uid: 'user001',
-          name: 'karen sulca',
-          email: 'sulca753@gmail.com',
-          date: '17/01/2020',
-
-
-        },
+  collection: {
+    doc: {
+      post001: {
+        post: 'probando mocks',
+        tipo: 'publico',
+        uid: 'user001',
+        name: 'karen sulca',
+        email: 'sulca753@gmail.com',
+        date: '17/01/2020',
 
 
       },
@@ -43,6 +39,12 @@ const datausuario = {
 };
 describe('postUser', () => {
   it('Debería poder agregar una nota', () => postUser(objectpost, tipopost, datausuario).then((data) => {
-    expect(data).toBe('la nota fue agregada');
+    // eslint-disable-next-line no-underscore-dangle
+    expect(data._data.contenido.post).toBe('probando mocks');
+  }));
+});
+
+describe('showPost', () => {
+  it('deberia retornar los post', () => showPost(() => {
   }));
 });

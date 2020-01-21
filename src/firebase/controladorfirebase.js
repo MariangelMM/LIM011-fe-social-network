@@ -61,6 +61,7 @@ export const postUser = (textarea, tipopost, datausuario) => firebase.firestore(
 });
 
 export const showPost = () => firebase.firestore().collection('publicaciones');
+
 // eliminar un post
 export const DeletePost = id => firebase.firestore().collection('publicaciones').doc(id).delete();
 // editar un post
