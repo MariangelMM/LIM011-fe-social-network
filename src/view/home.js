@@ -11,7 +11,7 @@ export const HOME = () => {
           <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="text">
           <input class="inputs flex" id="password" placeholder="Contraseña" type="password">
           <div id='msj-error'>
-          <p id='conten-error' class='mensajeerror' > </p> </div>
+          <p id='conten-error' class='mensajeerror'> </p> </div>
           <button class="boton" type="button" id="btn_ingresar">INGRESA</button>
          
           <div class="logo_redes">
@@ -41,16 +41,16 @@ export const HOME = () => {
         switch (errorCode) {
           case 'auth/invalid-email':
             mensajeError.innerHTML = `
-         Debes ingresar un correo electronico valido`;
+            &#10062; Debes ingresar un correo electronico valido`;
 
             break;
           case 'auth/wrong-password':
             mensajeError.innerHTML = `
-        La contraseña no es válida o el usuario no tiene una contraseña`;
+            &#10062; La contraseña no es válida o el usuario no tiene una contraseña`;
             break;
           case 'auth/user-not-found':
             mensajeError.innerHTML = `
-        No hay registro de usuario correspondiente a este identificador. El usuario puede haber sido eliminado`;
+            &#10062; No hay registro de usuario correspondiente a este identificador. El usuario puede haber sido eliminado`;
 
             break;
 

@@ -7,7 +7,6 @@ export const INTERACCIONES = (user) => {
    <body>
      <header>
        <nav>
-        <span id="nombreUsuario">${user.name}</span>
         <p>FOOD BOOK</p>
         <menu id="cerrarSesion">Cerrar sesión</i>
        </nav>
