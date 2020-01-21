@@ -1,7 +1,7 @@
 import MockFirebase from 'mock-cloud-firestore';
 
 
-import { postUser, showPost } from '../src/firebase/controladorfirebase';
+import { postUser, showPost, DeletePost } from '../src/firebase/controladorfirebase';
 
 const fixtureData = {
   __collection__: {
@@ -59,4 +59,17 @@ describe('showPost', () => {
     expect(data).toHaveLength(2);
     done();
   }));
+});
+
+describe('DeletePost', () => {
+  it('deberia ser una función', () => {
+    expect(typeof DeletePost).toBe('function');
+  });
+  it('Deberia poder eliminar una nota con el id post001', done => DeletePost('post001').then(() => showPost(
+    (data) => {
+      const result = data.find(note => note.id === 'post001');
+      expect(result).toBe(undefined);
+      done();
+    },
+  )));
 });
