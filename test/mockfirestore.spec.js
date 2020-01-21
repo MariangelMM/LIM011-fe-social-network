@@ -1,7 +1,9 @@
 import MockFirebase from 'mock-cloud-firestore';
 
 
-import { postUser, showPost, DeletePost } from '../src/firebase/controladorfirebase';
+import {
+  postUser, showPost, DeletePost, editPost,
+} from '../src/firebase/controladorfirebase';
 
 const fixtureData = {
   __collection__: {
@@ -17,6 +19,16 @@ const fixtureData = {
 
 
         },
+        post002: {
+          post: 'probando mocks 3',
+          tipo: 'privado',
+          uid: 'user001',
+          name: 'karen',
+          email: 'karen123@gmail.com',
+          date: '20/01/2020',
+
+
+        },
       },
     },
   },
@@ -24,10 +36,15 @@ const fixtureData = {
 
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
+const edipost = {
+  post: 'mensaje editado',
+};
+
 const objectpost = {
   post: 'probando mocks 2',
 
 };
+
 const tipopost = {
   tipo: 'publico',
 };
@@ -56,7 +73,7 @@ describe('showPost', () => {
   });
   it('deberia mostrar los post', done => showPost((data) => {
     // console.log(data);
-    expect(data).toHaveLength(2);
+    expect(data).toHaveLength(3);
     done();
   }));
 });
@@ -69,6 +86,19 @@ describe('DeletePost', () => {
     (data) => {
       const result = data.find(note => note.id === 'post001');
       expect(result).toBe(undefined);
+      done();
+    },
+  )));
+});
+
+describe('editPost', () => {
+  it('deberia ser una función', () => {
+    expect(typeof editPost).toBe('function');
+  });
+  it('deberia poder editar una nota', done => editPost('post002', edipost).then(() => showPost(
+    (data) => {
+      const result = data.find(note => note.id === 'post002');
+      expect(result.post).toBe('mensaje editado');
       done();
     },
   )));
