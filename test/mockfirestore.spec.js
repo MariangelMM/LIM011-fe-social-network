@@ -118,10 +118,4 @@ describe('saveUsers', () => {
   it('debería ser una función', () => {
     expect(typeof saveUsers).toBe('function');
   });
-  it('Debería poder agregar una coleccion', done => saveUsers(dataUsuario1).then(() => {
-    console.log(dataUsuario1);
-    // eslint-disable-next-line no-underscore-dangle
-    // expect(data._data.contenido.contenido).toBe('probando mocks 2');
-    done();
-  }));
 });
