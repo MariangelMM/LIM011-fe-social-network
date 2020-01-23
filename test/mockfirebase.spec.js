@@ -1,7 +1,7 @@
 
 import {
   registrarUsuario, logear, logInGoogle, logInFacebook, outUser,
-  coleccionRegisterUser, saveUsers, fecha,
+  coleccionRegisterUser, fecha,
 } from '../src/firebase/controladorfirebase.js';
 
 // configurando firebase mock
@@ -27,6 +27,7 @@ const datausuario = {
   displayName: 'mariangel mora',
   email: 'mariangelmora@gmail.com',
 };
+
 
 describe('registrarUsuario', () => {
   it('debería ser una función', () => {
@@ -88,12 +89,6 @@ describe('coleccionRegisterUser', () => {
     coleccionRegisterUser('usuarios', userid, datausuario).then((data) => {
       expect(data.email).toBe('mariangelmora@gmail.com');
     });
-  });
-});
-
-describe('saveUsers', () => {
-  it('debería ser una función', () => {
-    expect(typeof saveUsers).toBe('function');
   });
 });
 

@@ -1,5 +1,5 @@
 import {
-  logear, logInFacebook, logInGoogle, saveUsers,
+  logear, logInFacebook, logInGoogle, saveUsers, currentUser,
 } from '../firebase/controladorfirebase.js';
 
 export const HOME = () => {
@@ -67,7 +67,8 @@ export const HOME = () => {
 
     logInGoogle().then(() => {
       window.location.href = '#/interacciones';
-      saveUsers();
+      const datausuario = currentUser();
+      saveUsers(datausuario);
     });
   });
 
@@ -77,7 +78,8 @@ export const HOME = () => {
 
     logInFacebook().then(() => {
       window.location.href = '#/interacciones';
-      saveUsers();
+      const datausuario = currentUser();
+      saveUsers(datausuario);
     });
   });
 

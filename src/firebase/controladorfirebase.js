@@ -24,14 +24,13 @@ export const outUser = () => firebase.auth().signOut();
 export const currentUser = () => firebase.auth().currentUser;
 
 
-export const saveUsers = () => {
-  const user = firebase.auth().currentUser;
-  if (user != null) {
-    firebase.firestore().collection('usuarios').doc(user.uid).set({
-      name: user.displayName,
-      email: user.email,
-      photoURL: user.photoURL,
-      uid: user.uid,
+export const saveUsers = (datausuario) => {
+  if (datausuario != null) {
+    firebase.firestore().collection('usuarios').doc(datausuario.uid).set({
+      name: datausuario.displayName,
+      email: datausuario.email,
+      photoURL: datausuario.photoURL,
+      uid: datausuario.uid,
     });
   }
 };
@@ -82,4 +81,6 @@ export const coleccionRegisterUser = (nameCollection, id, dataUserRegister) => {
 };
 
 // editar un post
-export const editPost = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update(contenido);
+export const editPost = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update({
+  contenido,
+});
