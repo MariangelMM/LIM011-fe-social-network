@@ -1,6 +1,6 @@
 
 import {
-  registrarUsuario, logear, logInGoogle, logInFacebook, outUser,
+  registrarUsuario, logear, logInGoogle, logInFacebook, cerrarSesion,
   coleccionRegisterUser, fecha,
 } from '../src/firebase/controladorfirebase.js';
 
@@ -70,11 +70,11 @@ describe('logInFacebook', () => {
     }));
 });
 
-describe('outUser', () => {
+describe('cerrarSesion', () => {
   it('debería ser una función', () => {
-    expect(typeof outUser).toBe('function');
+    expect(typeof cerrarSesion).toBe('function');
   });
-  it('Deberia poder cerrar sesion', () => outUser()
+  it('Deberia poder cerrar sesion', () => cerrarSesion()
     .then(() => {
       expect('cerrar sesion').toBe('cerrar sesion');
     }));

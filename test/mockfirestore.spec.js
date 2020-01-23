@@ -1,7 +1,7 @@
 import MockFirebase from 'mock-cloud-firestore';
 
 import {
-  postUser, showPost, DeletePost, editPost, saveUsers,
+  createPostUser, showPost, DeletePost, editPostText, saveUsers,
 } from '../src/firebase/controladorfirebase';
 
 const fixtureData = {
@@ -59,11 +59,11 @@ const datausuario = {
 
 };
 
-describe('postUser', () => {
+describe('createPostUser', () => {
   it('debería ser una función', () => {
-    expect(typeof postUser).toBe('function');
+    expect(typeof createPostUser).toBe('function');
   });
-  it('Debería poder agregar una nota', done => postUser(objectpost, tipopost, datausuario).then((data) => {
+  it('Debería poder agregar una nota', done => createPostUser(objectpost, tipopost, datausuario).then((data) => {
     // eslint-disable-next-line no-underscore-dangle
     expect(data._data.contenido.contenido).toBe('probando mocks 2');
     done();
@@ -94,11 +94,11 @@ describe('DeletePost', () => {
   )));
 });
 
-describe('editPost', () => {
+describe('editPostText', () => {
   it('deberia ser una función', () => {
-    expect(typeof editPost).toBe('function');
+    expect(typeof editPostText).toBe('function');
   });
-  it('deberia poder editar una nota', done => editPost('post002', edipost.contenido).then(() => showPost(
+  it('deberia poder editar una nota', done => editPostText('post002', edipost.contenido).then(() => showPost(
     (data) => {
       const result = data.find(note => note.id === 'post002');
       expect(result.contenido).toBe('mensaje editado');
