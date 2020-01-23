@@ -58,12 +58,6 @@ const datausuario = {
   email: 'sulca753@gmail.com',
 
 };
-const dataUsuario1 = {
-  uid: 'user005',
-  name: 'karmen sulmo',
-  email: 'karmen@gmail.com',
-};
-
 
 describe('postUser', () => {
   it('debería ser una función', () => {
