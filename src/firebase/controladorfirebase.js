@@ -19,7 +19,7 @@ export const logInFacebook = () => {
 };
 
 // cerrar sesión
-export const outUser = () => firebase.auth().signOut();
+export const cerrarSesion = () => firebase.auth().signOut();
 
 export const currentUser = () => firebase.auth().currentUser;
 
@@ -35,7 +35,7 @@ export const saveUsers = (datausuario) => {
   }
 };
 
-export const getDataUser = user => firebase.firestore().collection('usuarios').doc(user.uid).get();
+export const getDataUserById = user => firebase.firestore().collection('usuarios').doc(user.uid).get();
 
 export const fecha = (fechas) => {
   const date = {
@@ -49,7 +49,7 @@ export const fecha = (fechas) => {
   return date;
 };
 
-export const postUser = (textarea, tipopost, datausuario) => firebase.firestore().collection('publicaciones').add({
+export const createPostUser = (textarea, tipopost, datausuario) => firebase.firestore().collection('publicaciones').add({
   contenido: textarea,
   tipo: tipopost,
   uid: datausuario.uid,
@@ -81,6 +81,6 @@ export const coleccionRegisterUser = (nameCollection, id, dataUserRegister) => {
 };
 
 // editar un post
-export const editPost = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update({
+export const editPostText = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update({
   contenido,
 });

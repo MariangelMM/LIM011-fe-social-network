@@ -1,5 +1,5 @@
 import {
-  outUser, postUser, showPost, DeletePost, editPost, currentUser,
+  cerrarSesion, createPostUser, showPost, DeletePost, editPostText, currentUser,
 } from '../firebase/controladorfirebase.js';
 
 export const INTERACCIONES = (user) => {
@@ -33,8 +33,8 @@ export const INTERACCIONES = (user) => {
                  <option value='privado'>Privado</option>
                </select>
             </form>
-          <div id="publicPost" >
-          </div>
+           <div id="publicPost" >
+           </div>
           </section>
      </main>
   </body> `;
@@ -49,7 +49,7 @@ export const INTERACCIONES = (user) => {
     const textarea = divElement.querySelector('#texto').value;
     const tipoPost = divElement.querySelector('#tipoPost').value;
     const datausuario = currentUser();
-    postUser(textarea, tipoPost, datausuario).then(() => {
+    createPostUser(textarea, tipoPost, datausuario).then(() => {
       divElement.querySelector('#texto').value = '';
     })
       .catch(() => {
@@ -105,7 +105,7 @@ export const INTERACCIONES = (user) => {
           e.preventDefault();
           const textoEditado = containerPost.querySelector('#postEditar').value;
 
-          editPost(doc.id, textoEditado);
+          editPostText(doc.id, textoEditado);
         });
       });
     });
@@ -116,7 +116,7 @@ export const INTERACCIONES = (user) => {
   const outSesion = divElement.querySelector('#cerrarSesion');
   outSesion.addEventListener('click', (e) => {
     e.preventDefault();
-    outUser().then(() => {
+    cerrarSesion().then(() => {
       window.location.hash = '#/';
     });
   });

@@ -1,5 +1,5 @@
 import { componentes } from '../view/index.js';
-import { getDataUser } from '../firebase/controladorfirebase.js';
+import { getDataUserById } from '../firebase/controladorfirebase.js';
 
 // eslint-disable-next-line consistent-return
 export const changeView = (router) => {
@@ -17,7 +17,7 @@ export const changeView = (router) => {
       const user = {
         uid: firebase.auth().currentUser.uid,
       };
-      getDataUser(user)
+      getDataUserById(user)
         .then((doc) => {
           const dataDelUsuario = doc.data();
           container.appendChild(componentes.interacciones(dataDelUsuario));
