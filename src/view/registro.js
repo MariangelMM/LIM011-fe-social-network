@@ -1,14 +1,14 @@
-import { registrarUsuario, coleccionRegisterUser } from '../firebase/controladorfirebase.js';
+import { registrarUsuario, coleccionRegistroUsuario } from '../firebase/controladorfirebase.js';
 
 export const REGISTRO = () => {
   const viewRegistro = `
     <div class="registro flex">
       <form class="formulario1 flex">
         <img class="logo1" src="./imagenes/loguito.png" alt="Logo">
-        <input class="inputs" flex" id="name" placeholder="Nombre Completo" type="text">
-        <input class="inputs" flex" id="lastName" placeholder="Apellido Completo" type="text">
-        <input class="inputs" flex" id="email" placeholder="ejemplo@hotmail.com" type="email"> 
-        <input class="inputs" flex" id="password" placeholder="Contraseña Nueva" type="password">
+        <input class="inputs flex" id="name" placeholder="Nombre Completo" type="text">
+        <input class="inputs flex" id="lastName" placeholder="Apellido Completo" type="text">
+        <input class="inputs flex" id="email" placeholder="ejemplo@hotmail.com" type="email"> 
+        <input class="inputs flex" id="password" placeholder="Contraseña Nueva" type="password">
         <button class="boton" type="submit" id="btn_registrar" >REGISTRAR</button>
       </form>
    </div>`;
@@ -32,7 +32,7 @@ export const REGISTRO = () => {
             photoURL: './imagenes/userXimage.png',
             email: result.user.email,
           };
-          coleccionRegisterUser('usuarios', uidUser, dataUser).then(() => {
+          coleccionRegistroUsuario('usuarios', uidUser, dataUser).then(() => {
             const user = firebase.auth().currentUser;
             user.updateProfile({
               displayName: name,

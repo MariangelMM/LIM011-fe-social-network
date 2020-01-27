@@ -1,43 +1,43 @@
 import {
-  cerrarSesion, createPostUser, showPost, DeletePost, editPostText, currentUser,
+  cerrarSesion, creaPostUsuario, PintaPost, borrarPost, editarTextPost, currentUser,
 } from '../firebase/controladorfirebase.js';
 
 export const INTERACCIONES = (user) => {
   const viewCatalogo = ` 
-   <body>
-     <header>
-       <nav>
-        <p>FOOD BOOK</p>
-        <menu id="cerrarSesion">Cerrar sesión</i>
-       </nav>
-     </header>
-  
-     
-     <main class="publicaciones">
-          <section class="seccion-perfil">
-            <img class="portada" src="../imagenes/bannerloguito.png" alt="foto de portada">
-            <div class="info-user">
-               <img id="fotoPerfil" class="foto-perfil" src="${user.photoURL}" alt="foto de perfil">
-               <p class="fondo" id="nombreUsuarioDestok" >${user.name}</p>
-            </div>
-          </section>
-    
-          <section class="seccion-publicacion">
-            <form class="form">
-              <textarea class="mensaje" id="texto" placeholder="¿Qué quieres compartir?" cols="30" rows="4"></textarea>
-              <div class="btn-enviar">
-                <button class="btn-compartir" id="compartir">Compartir</button>
-              </div>
-               <select class="btn-tipopost" id="tipoPost">
-                 <option value='publico'>Público</option>
-                 <option value='privado'>Privado</option>
-               </select>
-            </form>
-           <div id="publicPost" >
-           </div>
-          </section>
-     </main>
-  </body> `;
+  <body>
+  <header>
+    <nav>
+      <p>FOOD BOOK</p>
+      <menu id="cerrarSesion">Cerrar sesión</i>
+    </nav>
+  </header>
+
+
+  <main class="publicaciones">
+    <section class="seccion-perfil">
+      <img class="portada" src="../imagenes/bannerloguito.png" alt="foto de portada">
+      <div class="info-user">
+        <img id="fotoPerfil" class="foto-perfil" src="${user.photoURL}" alt="foto de perfil">
+        <p class="fondo" id="nombreUsuarioDestok">${user.name}</p>
+      </div>
+    </section>
+
+    <section class="seccion-publicacion">
+      <form class="form">
+        <textarea class="mensaje" id="texto" placeholder="¿Qué quieres compartir?" cols="30" rows="4"></textarea>
+        <div class="btn-enviar">
+          <button class="btn-compartir" id="compartir">Compartir</button>
+        </div>
+        <select class="btn-tipopost" id="tipoPost">
+          <option value='publico'>Público</option>
+          <option value='privado'>Privado</option>
+        </select>
+      </form>
+      <div id="publicPost">
+      </div>
+    </section>
+  </main>
+</body> `;
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
@@ -49,7 +49,7 @@ export const INTERACCIONES = (user) => {
     const textarea = divElement.querySelector('#texto').value;
     const tipoPost = divElement.querySelector('#tipoPost').value;
     const datausuario = currentUser();
-    createPostUser(textarea, tipoPost, datausuario).then(() => {
+    creaPostUsuario(textarea, tipoPost, datausuario).then(() => {
       divElement.querySelector('#texto').value = '';
     })
       .catch(() => {
@@ -85,7 +85,7 @@ export const INTERACCIONES = (user) => {
       const eliminar = containerPost.querySelector(`#btn-delete-${doc.id}`);
       eliminar.addEventListener('click', (e) => {
         e.preventDefault();
-        DeletePost(doc.id);
+        borrarPost(doc.id);
       });
       // EDITAR POST
       const contPostOriginal = containerPost.querySelector('#contPostOriginal');
@@ -105,12 +105,12 @@ export const INTERACCIONES = (user) => {
           e.preventDefault();
           const textoEditado = containerPost.querySelector('#postEditar').value;
 
-          editPostText(doc.id, textoEditado);
+          editarTextPost(doc.id, textoEditado);
         });
       });
     });
   };
-  showPost(fnParaConsolearLaData);
+  PintaPost(fnParaConsolearLaData);
 
   // cerrar sesion
   const outSesion = divElement.querySelector('#cerrarSesion');

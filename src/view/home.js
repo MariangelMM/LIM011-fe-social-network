@@ -1,5 +1,5 @@
 import {
-  logear, logInFacebook, logInGoogle, saveUsers, currentUser,
+  loguearse, logInFacebook, logInGoogle, guardarUsuario, currentUser,
 } from '../firebase/controladorfirebase.js';
 
 export const HOME = () => {
@@ -28,7 +28,7 @@ export const HOME = () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const mensajeError = document.getElementById('conten-error');
-    logear(email, password)
+    loguearse(email, password)
       .then(() => {
         document.getElementById('email').value = '';
         document.getElementById('password').value = '';
@@ -68,7 +68,7 @@ export const HOME = () => {
     logInGoogle().then(() => {
       window.location.href = '#/interacciones';
       const datausuario = currentUser();
-      saveUsers(datausuario);
+      guardarUsuario(datausuario);
     });
   });
 
@@ -79,7 +79,7 @@ export const HOME = () => {
     logInFacebook().then(() => {
       window.location.href = '#/interacciones';
       const datausuario = currentUser();
-      saveUsers(datausuario);
+      guardarUsuario(datausuario);
     });
   });
 

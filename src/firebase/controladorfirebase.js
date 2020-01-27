@@ -3,7 +3,7 @@ export const registrarUsuario = (email, password) => firebase.auth()
   .createUserWithEmailAndPassword(email, password);
 
 // login
-export const logear = (email, password) => firebase.auth()
+export const loguearse = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password);
 
 // login  con Google
@@ -24,7 +24,7 @@ export const cerrarSesion = () => firebase.auth().signOut();
 export const currentUser = () => firebase.auth().currentUser;
 
 
-export const saveUsers = (datausuario) => {
+export const guardarUsuario = (datausuario) => {
   if (datausuario != null) {
     firebase.firestore().collection('usuarios').doc(datausuario.uid).set({
       name: datausuario.displayName,
@@ -49,7 +49,7 @@ export const fecha = (fechas) => {
   return date;
 };
 
-export const createPostUser = (textarea, tipopost, datausuario) => firebase.firestore().collection('publicaciones').add({
+export const creaPostUsuario = (textarea, tipopost, datausuario) => firebase.firestore().collection('publicaciones').add({
   contenido: textarea,
   tipo: tipopost,
   uid: datausuario.uid,
@@ -59,7 +59,7 @@ export const createPostUser = (textarea, tipopost, datausuario) => firebase.fire
   fecha: `${fecha(new Date()).day}/${fecha(new Date()).month}/${fecha(new Date()).year} a las ${fecha(new Date()).hours}:${fecha(new Date()).minutes}`,
 });
 
-export const showPost = (funcionQueRecibeLaData) => {
+export const PintaPost = (funcionQueRecibeLaData) => {
   const result = firebase.firestore().collection('publicaciones')
     .onSnapshot((querySnapshot) => {
       const data = [];
@@ -72,15 +72,15 @@ export const showPost = (funcionQueRecibeLaData) => {
 };
 
 // eliminar un post
-export const DeletePost = id => firebase.firestore().collection('publicaciones').doc(id).delete();
+export const borrarPost = id => firebase.firestore().collection('publicaciones').doc(id).delete();
 
 // coleccion de registro de usuarios
-export const coleccionRegisterUser = (nameCollection, id, dataUserRegister) => {
+export const coleccionRegistroUsuario = (nameCollection, id, dataUserRegister) => {
   const coleccion = firebase.firestore().collection(nameCollection).doc(id).set(dataUserRegister);
   return coleccion;
 };
 
 // editar un post
-export const editPostText = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update({
+export const editarTextPost = (id, contenido) => firebase.firestore().collection('publicaciones').doc(id).update({
   contenido,
 });
