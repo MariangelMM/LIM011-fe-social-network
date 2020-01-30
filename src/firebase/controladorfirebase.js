@@ -59,7 +59,7 @@ export const creaPostUsuario = (textarea, tipopost, datausuario) => firebase.fir
   fecha: `${fecha(new Date()).day}/${fecha(new Date()).month}/${fecha(new Date()).year} a las ${fecha(new Date()).hours}:${fecha(new Date()).minutes}`,
 });
 
-export const PintaPost = (funcionQueRecibeLaData) => {
+export const pintaPost = (funcionQueRecibeLaData) => {
   const result = firebase.firestore().collection('publicaciones')
     .onSnapshot((querySnapshot) => {
       const data = [];

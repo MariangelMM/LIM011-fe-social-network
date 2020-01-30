@@ -1,7 +1,6 @@
  body {
     margin:0;
     padding: 0;
-    height: 100vh;
     background-image: url(./imagenes/fondo.jpg);
     font-family: Arial, Helvetica, sans-serif;
     align-items: center;
@@ -10,18 +9,20 @@
 /* Vista de login */
 .contenedor{
     justify-content: center;
-    margin: 5em;
+    margin: 6em 0em 0em 0em;
 }
 .flex{
     display: flex;
 }
 .logo{
-    width: 25%;
-    margin: 4em;
+    width: 300px;
+    height: 300px;
+    margin: 1em;
     background-size: cover;
 }
 .formulario{
     width: 50%;
+    margin: 1em 1em 0em 0em;
     align-items: center;
     flex-direction: column;
     font-size: 20px;
@@ -36,15 +37,17 @@
 .inputs {
     flex-direction: column;
     font-size: 20px;
-    width: 50%;
+    width: 250px;
+    height: 25px;
     padding: 10px 15px;
     border-radius: 30px;
-    margin: 15px 2em 0em;
+    margin: 15px 0em 0em 0em;
     outline: none;
     border: 1px solid;
     background-color: rgb(216, 209, 209) ;
     color: white;
 }
+
 .boton{
     border-radius: 25px;
     font-size: 14px;
@@ -75,22 +78,26 @@
     justify-content: center;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:700px) {
     .contenedor{
-        width: 100%;
-        justify-content: center;
+        width: 90%;
+        justify-items: center;
+        align-items: center;
         flex-direction: column;
         margin: 0em;
     }
     .formulario{
-        width: 90%;
+        width: 80%;
         margin: 0em 1em 1em;
         align-items: center;
         flex-direction: column;
     }
     .logo{
-        width: 90%;
+        display: flex;
+        width: 240px;
+        height: 240px;
         margin: 5px;
+        align-items: center;
         background-size: cover;
     }
     .parrafo {
@@ -105,6 +112,92 @@
     }
 }
 
+@media screen and (max-width:450px) {
+    .contenedor{
+        width: 95%;
+        justify-items: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 0em;
+    }
+    .formulario{
+        width: 85%;
+        margin: 0em 1em 1em;
+        align-items: center;
+        flex-direction: column;
+    }
+    .logo{
+        display: flex;
+        width: 200px;
+        height: 200px;
+        margin: 5px;
+        align-items: center;
+        background-size: cover;
+    }
+    .parrafo {
+        margin: 10px;
+        font-size: 17px;
+        text-align: center;
+    }
+    .inputs{
+        font-size: 15px;
+        width: 180px;
+        height: 25px;
+        margin: 5px;
+    }
+    .boton{
+        border-radius: 25px;
+        font-size: 12px;
+        height: 40px;
+        width: 150px;
+        border: 1px;
+        margin: 15px;
+        outline: none;
+        color: black;
+        font-weight: bold;
+        background-color: #23b574;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width:280px) {
+    .contenedor{
+        width: 95%;
+        justify-items: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 0em;
+    }
+    .formulario{
+        width: 85%;
+        margin: 0em 1em 1em;
+        align-items: center;
+        flex-direction: column;
+    }
+    .logo{
+        display: flex;
+        width: 170px;
+        height: 170px;
+        margin: 3px;
+        align-items: center;
+        background-size: cover;
+    }
+    .parrafo {
+        margin: 8px;
+        font-size: 14px;
+        text-align: center;
+    }
+    .inputs{
+        font-size: 12px;
+        width: 70%;
+    }
+    .boton{
+        border-radius: 25px;
+        font-size: 10px;
+        height: 30px;
+        width: 80px;
+    }
+}
 /* Vista de Registro */
 
 .registro{
@@ -124,32 +217,9 @@
     width: 100%;
     align-items: center;
 }
-@media screen and (max-width:600px) {
-    .registro{
-        width: 100%;
-        justify-content: center;
-        margin: 0em;
-    }
-    .logo1{
-        width: 80%;
-        align-items: center;
-        margin: 1em;
-    }
-    .formulario1{
-        width: 90%;
-        margin: 3em 2em 0em;
-        align-items: center;
-        flex-direction: column;
-    }
-}
-
-
-
-
-
 
 /* Vista de interacciones */
-body header{
+header{
     background-color:#23b574;
     background-size: 100px;
     background-repeat: no-repeat;
@@ -291,10 +361,16 @@ header nav{
     display: none;
 }
 
-@media screen and (max-width:600px) {
-
+@media screen and (max-width:650px) {
     .publicaciones{
+        justify-items: center;
+        align-items: center;
         flex-direction: column;
+        margin: 0em 5em 0em 0em;
+    }
+    .seccion-publicacion{
+        align-items: center;
+        margin: 0em;
     }
     .profile-section{
         width: 60%;
@@ -309,4 +385,101 @@ header nav{
         margin: auto;
     }
 }
- 
+
+
+
+
+@media screen and (max-width:500px) {
+    body{
+        margin: 0em;
+    }
+    nav{
+        padding: 0em;
+    }
+    .fondo-post{
+        align-items: center;
+    }
+    .form {
+        width: 250px;
+    }
+    .mensaje{
+        width: 220px;
+    }
+    .user-post, .message-public {
+        font-size: 15px;
+    }
+}  
+
+@media screen and (max-width:365px) {
+    body{
+        margin: 0em;
+    }
+    nav{
+        font-size: 16px;
+        padding: 0em;
+    }
+    .fondo-post{
+        align-items: center;
+    }
+    .form {
+        width: 200px;
+    }
+    .mensaje{
+        width: 160px;
+        font-size: 10px;
+    }
+    .foto-perfil{
+        width: 60px;
+
+    }
+    .user-post, .message-public {
+        font-size: 10px;
+    }
+    .btn-tipopost, .btn-compartir {
+        width: 60px;
+        font-size: 10px;
+    }
+    .btn-eliminar, .btn-editar, .btn-guardar {
+        width: 30px;
+    }
+}
+
+@media screen and (max-width:260px) {
+   nav{
+       font-size: 14px;
+   }
+   .foto-perfil{
+    width: 35px; 
+   }
+   .user-post, .message-public {
+    font-size: 10px;
+   }
+   .fondo {
+       font-size: 14px;
+   }
+   .form {
+    width: 180px ;
+   }
+   .mensaje{
+    width: 120px;
+   }
+}
+
+@media screen and (max-width:235px) {
+    nav{
+        font-size: 12px;
+    }
+    .foto-perfil{
+     width: 30px; 
+    }
+    .user-post, .message-public {
+     font-size: 8px;
+    }
+    .form {
+     width: 160px ;
+    }
+    .mensaje{
+     width: 110px;
+
+    }
+ }
